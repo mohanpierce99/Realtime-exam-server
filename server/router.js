@@ -10,10 +10,14 @@ function router(bundle) {
     app.use(express.static(__dirname + "./../public", {
         fallthrough: true
     }));
+
+    
+
     app.use(bodyParser.json());
     app.get("/", (req, res) => {
         res.send('../public/index.html');
-    })
+    });
+    
 
     let defaults = {
         login_count: 0,
@@ -132,6 +136,68 @@ function router(bundle) {
         
     });
     
+    app.post('/updatesections',(req,res)=>{
+        console.log(req.body);
+        let root = mongoose.connection.db.collection('students');
+        root.find({
+            id: Number(req.body.id)
+        })
+        .count()
+        .then((count)=>{
+            console.log(count);
+            if (count === 0) {
+                res.status(401).send("Error occured");
+            } else {
+                var str1 = req.body.result[0];
+                var str2 = req.body.result[1];
+                var str3 = req.body.result[2];
+                var str4 = req.body.result[3];
+                root.updateOne({
+                    id: Number(req.body.id)
+                }, {
+                    $set: {
+                        sections:
+                        {
+                            str1 : true,//////////////////need to complete
+                            str2 : true,
+                            str3 : true,
+                            str4 : true,
+                        }
+                        
+                    }
+                }).then((data) => res.send("Successfully updated sections")).catch((err) => res.status(404).send("Something went wrong"));
+            }
+        });
+    });
+
+    app.post('/unattempted' , (req,res) => {
+        let user = req.body;
+        user.id = Number(user.id);
+        console.log(user.id);
+        let root = mongoose.connection.db.collection('students');
+        root.find({id:user.id}).count().then((count)=>{
+            console.log(count);
+            if(count === 0){
+                console.log("wrong roll no");
+            }
+            else{
+                console.log("else case");
+                root.find({id:user.id}).toArray().then((data) => {
+                    var sections = data[0].sections
+                    //console.log(sections);
+                    var seclist = Object.keys(sections);
+                    var falselist = seclist.filter((object)=>{return sections[object]===false;});
+                    console.log(falselist);
+                    if(falselist.length<4)throw err;//////////////need to correct
+                    res.send(JSON.stringify({falselist}));
+                })
+                .catch((err)=>{console.log(err);});
+            }
+        })
+        // .catch((err)=>{
+        //     console.log("couldnt call the count method in db");
+        // });
+    });
 
 }
 
