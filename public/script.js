@@ -44,7 +44,7 @@
             id:rollno.value
          }
          httpreq("/register",JSON.stringify(usr)).then((data)=>{
-             console.log(data);
+             alert(data);
          }).catch(err=>console.log(err));
      }
 
@@ -56,6 +56,7 @@
         var http = new Promise((res,rej)=>{
             var xhttp = new XMLHttpRequest();
             xhttp.open('POST',route,true);
+            xhttp.setRequestHeader('Cookie',document.cookie);
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                       res(this.response);
