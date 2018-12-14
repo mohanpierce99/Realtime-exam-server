@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+
+const salt = 'ssn';
 
 const studentSchema = new mongoose.Schema({
 	//student
@@ -7,7 +10,7 @@ const studentSchema = new mongoose.Schema({
 		minlength: 12,
 		required: true,
 		trim: true,
-		unique: false
+		unique: true
 		},
 	name:{
        	type:String,
@@ -46,8 +49,39 @@ const studentSchema = new mongoose.Schema({
 	sections:{
      	type:Object,
      	required:true
-     	}
+     	},
+ 	tokens:[{tkn:{
+			type: String,
+			}
+		}]
 });
+		
+studentSchema.methods.generateAuthToken = function (stdModel , st , arr) {
+	let studnt = st.toObject();
+	var tkn = jwt.sign({
+		_id: studnt._id.toHexString(),
+		arr
+	},salt).toString();
+	studnt.tokens.push({tkn});
+	console.log(studnt);
+	let x = new stdModel(studnt);
+	return x.save().then(()=>{
+		debugger;
+		return tkn;
+	},(e)=>{throw e})}
+
+studentSchema.methods.removeToken = function (token) {
+		let student = this;
+		return student.updateOne({
+			$pull: {
+				tokens: {
+					token: token,
+				}
+			}
+		}); }
+
+
+
 
 const Student = mongoose.model('students' , studentSchema);
 

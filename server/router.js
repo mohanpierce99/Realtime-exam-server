@@ -79,26 +79,21 @@ function router(bundle) {
 
     }
 
-    app.post('/login', (req, res) => {
+    app.post('/login', (req,res)=>{
         let rollno = +req.body.id;
-        let root = mongoose.connection.db.collection('students');
-        root.find({
-            id: rollno
-        }).count().then((count) => {
-            if (count === 0) {
-                res.status(401).send("Please Signup or enter Correct Register No");
-            } else {
-                root.updateOne({
-                    id: rollno
-                }, {
-                    $set: {
-                        is_loggedin: true
-                    }
-                }).then((data) => res.send("Successfully logged in")).catch((err) => res.status(404).send("Something went wrong"));
-            }
-        })
-
+            Student.findOneAndUpdate(
+                    {id: rollno},
+                    {$set: {is_loggedin: true}},
+                    {new: true}
+                ).then((student) =>{ 
+                    return student.generateAuthToken(Student,student,[1,2,3,4,5]);
+                }).then((token)=>{
+                    console.log(token);
+                    res.send(token);
+                })
+                .catch((err) => res.status(404).send("Something went wrong"));
     });
+
 
     app.post('/register', (req, res) => {
         let user = req.body;
