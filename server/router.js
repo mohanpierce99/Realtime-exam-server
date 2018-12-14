@@ -86,6 +86,7 @@ function router(bundle) {
     app.post('/login', (req, res) => {
         let rollno = +req.body.id;
         let root = mongoose.connection.db.collection('students');
+        
         root.find({
             id: rollno
         }).count().then((count) => {
@@ -136,6 +137,25 @@ function router(bundle) {
         
     });
     
+    // app.post('/updatesections',(req,res)=>{
+    //     let root = mongoose.connection.db.collection('students');
+    //             root.find({id: Number(req.body.id)}).toArray().then((doc)=>{
+    //                 console.log(doc[0].sections);
+    //                 var sec = doc[0].sections;
+    //                 sec[String(req.body.result[0])] = true;
+    //                 sec[String(req.body.result[1])] = true;
+    //                 sec[String(req.body.result[2])] = true;
+    //                 sec[String(req.body.result[3])] = true;
+    //                 root.updateOne({
+    //                     id: Number(req.body.id)
+    //                 }, {
+    //                     $set: {"sections":sec}
+    //                 },{
+    //                     returnOriginal:false
+    //                 }).then((data) => res.send("Successfully updated sections")).catch((err) => res.status(404).send("Something went wrong"));
+    
+    //             });
+    // });
     app.post('/updatesections',(req,res)=>{
         console.log(req.body);
         let root = mongoose.connection.db.collection('students');
@@ -147,25 +167,24 @@ function router(bundle) {
             console.log(count);
             if (count === 0) {
                 res.status(401).send("Error occured");
-            } else {
-                var str1 = req.body.result[0];
-                var str2 = req.body.result[1];
-                var str3 = req.body.result[2];
-                var str4 = req.body.result[3];
-                root.updateOne({
-                    id: Number(req.body.id)
-                }, {
-                    $set: {
-                        sections:
-                        {
-                            str1 : true,//////////////////need to complete
-                            str2 : true,
-                            str3 : true,
-                            str4 : true,
-                        }
-                        
-                    }
-                }).then((data) => res.send("Successfully updated sections")).catch((err) => res.status(404).send("Something went wrong"));
+            } 
+            else {
+                let root = mongoose.connection.db.collection('students');
+                root.find({id: Number(req.body.id)}).toArray().then((doc)=>{
+                    var sec = doc[0].sections;
+                    sec[String(req.body.result[0])] = true;
+                    sec[String(req.body.result[1])] = true;
+                    sec[String(req.body.result[2])] = true;
+                    sec[String(req.body.result[3])] = true;
+                    root.updateOne({
+                        id: Number(req.body.id)
+                    }, {
+                        $set: {"sections":sec}
+                    },{
+                        returnOriginal:false
+                    }).then((data) => res.send("Successfully updated sections")).catch((err) => res.status(404).send("Something went wrong"));
+    
+                });    
             }
         });
     });
@@ -188,8 +207,8 @@ function router(bundle) {
                     var seclist = Object.keys(sections);
                     var falselist = seclist.filter((object)=>{return sections[object]===false;});
                     console.log(falselist);
-                    if(falselist.length<4)throw err;//////////////need to correct
-                    res.send(JSON.stringify({falselist}));
+                    if(falselist.length<4){console.log("sections of question ran out")}
+                    else res.send(JSON.stringify({falselist}));
                 })
                 .catch((err)=>{console.log(err);});
             }
