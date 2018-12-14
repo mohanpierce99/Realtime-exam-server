@@ -9,6 +9,10 @@ const studentSchema = new mongoose.Schema({
 		trim: true,
 		unique: false
 		},
+		marks:{
+			type:Array,
+			required:false,
+		},
 	name:{
        	type:String,
        	minlength:[3,"Too small"],
@@ -46,9 +50,13 @@ const studentSchema = new mongoose.Schema({
 	sections:{
      	type:Object,
      	required:true
-     	}
+		 },
+		 token:{
+			 type:String
+		 }
 });
 
 const Student = mongoose.model('students' , studentSchema);
 
 module.exports=Student;
+

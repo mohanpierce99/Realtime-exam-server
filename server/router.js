@@ -6,7 +6,9 @@ function router(bundle) {
     let express = bundle.express;
     let bodyParser = bundle.bodyParser;
 
+app.use(function(req,res,next){
 
+});
     app.use(express.static(__dirname + "./../public", {
         fallthrough: true
     }));
@@ -77,7 +79,7 @@ function router(bundle) {
             S55: false,
             S56: false,
         }
-
+    
     }
 
     app.post('/login', (req, res) => {
