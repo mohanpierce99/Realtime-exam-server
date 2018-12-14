@@ -6,6 +6,7 @@ function router(bundle) {
     let Student = bundle.Student;
     let express = bundle.express;
     let bodyParser = bundle.bodyParser;
+    let randomsection = bundle.randomsection;
 
     app.use(express.static(__dirname + "./../public", {
         fallthrough: true
@@ -83,6 +84,76 @@ function router(bundle) {
 
     }
 
+    app.post('/secsel',(req,res)=>{
+        //console.log(typeof randomsection);
+        randomsection(mongoose,req.body).then((result)=>{
+            console.log("result of selection:" , result);
+        })
+        .catch((err)=>{console.log(err);});
+    });
+
+    app.post('/unattempted' , (req,res) => {
+        let user = req.body;
+        user.id = Number(user.id);
+        console.log(user.id);
+        let root = mongoose.connection.db.collection('students');
+        root.find({id:user.id}).count().then((count)=>{
+            console.log(count);
+            if(count === 0){
+                console.log("wrong roll no");
+            }
+            else{
+                console.log("else case");
+                root.find({id:user.id}).toArray().then((data) => {
+                    var sections = data[0].sections
+                    //console.log(sections);
+                    var seclist = Object.keys(sections);
+                    var falselist = seclist.filter((object)=>{return sections[object]===false;});
+                    console.log(falselist);
+                    if(falselist.length<4){console.log("sections of question ran out")}
+                    else res.send(JSON.stringify({falselist}));
+                })
+                .catch((err)=>{console.log(err);});
+            }
+        })
+        // .catch((err)=>{
+        //     console.log("couldnt call the count method in db");
+        // });
+    });
+
+    app.post('/updatesections',(req,res)=>{
+        console.log(req.body);
+        let root = mongoose.connection.db.collection('students');
+        root.find({
+            id: Number(req.body.id)
+        })
+        .count()
+        .then((count)=>{
+            console.log(count);
+            if (count === 0) {
+                res.status(401).send("Error occured");
+            } 
+            else {
+                let root = mongoose.connection.db.collection('students');
+                root.find({id: Number(req.body.id)}).toArray().then((doc)=>{
+                    var sec = doc[0].sections;
+                    sec[String(req.body.result[0])] = true;
+                    sec[String(req.body.result[1])] = true;
+                    sec[String(req.body.result[2])] = true;
+                    sec[String(req.body.result[3])] = true;
+                    root.updateOne({
+                        id: Number(req.body.id)
+                    }, {
+                        $set: {"sections":sec}
+                    },{
+                        returnOriginal:false
+                    }).then((data) => res.send("Successfully updated sections")).catch((err) => res.status(404).send("Something went wrong"));
+    
+                });    
+            }
+        });
+    });
+
     app.post('/login', (req, res) => {
         let rollno = +req.body.id;
         let root = mongoose.connection.db.collection('students');
@@ -137,87 +208,6 @@ function router(bundle) {
         
     });
     
-    // app.post('/updatesections',(req,res)=>{
-    //     let root = mongoose.connection.db.collection('students');
-    //             root.find({id: Number(req.body.id)}).toArray().then((doc)=>{
-    //                 console.log(doc[0].sections);
-    //                 var sec = doc[0].sections;
-    //                 sec[String(req.body.result[0])] = true;
-    //                 sec[String(req.body.result[1])] = true;
-    //                 sec[String(req.body.result[2])] = true;
-    //                 sec[String(req.body.result[3])] = true;
-    //                 root.updateOne({
-    //                     id: Number(req.body.id)
-    //                 }, {
-    //                     $set: {"sections":sec}
-    //                 },{
-    //                     returnOriginal:false
-    //                 }).then((data) => res.send("Successfully updated sections")).catch((err) => res.status(404).send("Something went wrong"));
-    
-    //             });
-    // });
-    app.post('/updatesections',(req,res)=>{
-        console.log(req.body);
-        let root = mongoose.connection.db.collection('students');
-        root.find({
-            id: Number(req.body.id)
-        })
-        .count()
-        .then((count)=>{
-            console.log(count);
-            if (count === 0) {
-                res.status(401).send("Error occured");
-            } 
-            else {
-                let root = mongoose.connection.db.collection('students');
-                root.find({id: Number(req.body.id)}).toArray().then((doc)=>{
-                    var sec = doc[0].sections;
-                    sec[String(req.body.result[0])] = true;
-                    sec[String(req.body.result[1])] = true;
-                    sec[String(req.body.result[2])] = true;
-                    sec[String(req.body.result[3])] = true;
-                    root.updateOne({
-                        id: Number(req.body.id)
-                    }, {
-                        $set: {"sections":sec}
-                    },{
-                        returnOriginal:false
-                    }).then((data) => res.send("Successfully updated sections")).catch((err) => res.status(404).send("Something went wrong"));
-    
-                });    
-            }
-        });
-    });
-
-    app.post('/unattempted' , (req,res) => {
-        let user = req.body;
-        user.id = Number(user.id);
-        console.log(user.id);
-        let root = mongoose.connection.db.collection('students');
-        root.find({id:user.id}).count().then((count)=>{
-            console.log(count);
-            if(count === 0){
-                console.log("wrong roll no");
-            }
-            else{
-                console.log("else case");
-                root.find({id:user.id}).toArray().then((data) => {
-                    var sections = data[0].sections
-                    //console.log(sections);
-                    var seclist = Object.keys(sections);
-                    var falselist = seclist.filter((object)=>{return sections[object]===false;});
-                    console.log(falselist);
-                    if(falselist.length<4){console.log("sections of question ran out")}
-                    else res.send(JSON.stringify({falselist}));
-                })
-                .catch((err)=>{console.log(err);});
-            }
-        })
-        // .catch((err)=>{
-        //     console.log("couldnt call the count method in db");
-        // });
-    });
-
 }
 
 module.exports = router;

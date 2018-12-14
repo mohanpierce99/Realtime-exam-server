@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('./db/mongoconnect.js');
 const Student = require('./db/models/Student.js');
 const router = require('./router.js');
+const randomsection = require('./../public/randomsection');
 let app = express();
 
 const port = process.env.PORT || 3000;
@@ -15,7 +16,8 @@ router({
     express,
     bodyParser,
     mongoose,
-    Student
+    Student,
+    randomsection
 });
 
 app.listen(port);
