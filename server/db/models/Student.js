@@ -7,7 +7,7 @@ const studentSchema = new mongoose.Schema({
 		minlength: 12,
 		required: true,
 		trim: true,
-		unique: false
+		unique: [true,"User already Exists"]
 		},
 		marks:{
 			type:Array,
