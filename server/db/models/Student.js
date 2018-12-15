@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+var uniqueValidator = require('mongoose-unique-validator');
 const studentSchema = new mongoose.Schema({
 	//student
 	id:{
@@ -52,9 +52,13 @@ const studentSchema = new mongoose.Schema({
      	required:true
 		 },
 		 token:{
-			 type:String
+			 type:String,
+			 required:false,
+			 default:""
 		 }
 });
+studentSchema.plugin(uniqueValidator);
+
 
 const Student = mongoose.model('students' , studentSchema);
 

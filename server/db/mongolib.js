@@ -1,4 +1,5 @@
-let mongoose;
+
+let MODULE=function(jwt,mongoose){
 let coll;
 let root;
 let defaults = {
@@ -64,56 +65,94 @@ let defaults = {
     }
 
 }
+    async function readDb(root, query, count) {
 
-async function readDb(root,query, count) {
+        let result;
+        try {
+            result = await (count ? root.find(query).count() : root.find(query).toArray());
+        } catch (err) {
+            throw err;
+        }
+        if (result === 0 && count) {
+            return false;
+        } else if (result && count) {
+            return true;
+        }
+        return result;
     
-    let result;
-    try {
-        result = await (count ? root.find(query).count() : root.find(query).toArray());
-    } catch (err) {
-        throw err;
-    }
-    if (result === 0 && count) {
-        return false;
-    }else if(result && count){return true;}
-    return result;
-
-};
-
-
-
-
-
-async function findAndUpdate(root, filter, update, count) {
-    let result;
-    try{
-    result=await root.findOneAndUpdate(filter,{$set:update},{returnOriginal:false});
-    console.log(result);
-    }catch(err){
-        throw err;
-    }
-    return result.value;
-}
-
-
-
-function init(a,b) {
-    mongoose = a;
-    coll=b;
-    root = mongoose.connection.collection(coll);
-    let read=readDb.bind(null,root);
-    let update=findAndUpdate.bind(null,root);
-    return {
-        read,update
     };
+    
+    function generateJWT(jwt, payload, pass) {
+        return new Promise((res, rej) => {
+                    try {
+                        return jwt.sign(payload, pass, {
+                            expiresIn: 2400
+                        });
+                    } catch (err) {
+                        rej(err);
+                    }
+    
+                });
+            }
+    
+                function verifyJWT(jwt, token, pass) {
+                    return new Promise((res, rej) => {
+                        try {
+                            res(jwt.verify(token, pass));
+                        } catch (err) {
+                            rej(err);
+                        }
+                    });
+                }
+    
+                function revive(jwt, token) {
+                    return new Promise((res, rej) => {
+                        try {
+                            return jwt.decode(token);
+                        } catch (err) {
+                            rej(err);
+                        }
+                    });
+                }
+    
+    
+                async function findAndUpdate(root, filter, update, count) {
+                    let result;
+                    try {
+                        result = await root.findOneAndUpdate(filter, {
+                            $set: update
+                        }, {
+                            returnOriginal: false
+                        });
+                        console.log(result);
+                    } catch (err) {
+                        throw err;
+                    }
+                    return result.value;
+                }
+
+                
+            function init(a, b) {
+                coll = b;
+                root = mongoose.connection.collection(coll);
+                let read = readDb.bind(null, root);
+                let update = findAndUpdate.bind(null, root);
+                return {
+                    read,
+                    update
+                };
+            }
+
+            return {
+                init,
+                defaults,generateJWT,verifyJWT,revive
+            }
+    
 }
 
 
 
-module.exports = {
-    init,
-    defaults
-}
 
 
 
+            module.exports = MODULE;

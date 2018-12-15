@@ -4,6 +4,8 @@ const mongoose = require('./db/mongoconnect.js');
 const Student = require('./db/models/Student.js');
 const cookie=require('cookie-parser');
 const router = require('./router.js');
+const mongolib=require('./db/mongolib.js');
+const jwt=require('jwtwebtoken');
 let app = express();
 
 const port = process.env.PORT || 3000;
@@ -17,7 +19,9 @@ router({
     bodyParser,
     mongoose,
     Student,
-    cookie
+    cookie,
+    mongolib,
+     jwt
 });
 
 app.listen(port);
