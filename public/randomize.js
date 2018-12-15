@@ -2,32 +2,46 @@ var random = [];
 (function(){
      
     sel("#randomizebtn").addEventListener("click",()=>{
-        var min;//inclusive [
-        var max;//exclusive )
         var rollno = sel("#rollno").value;
-        console.log(rollno);
         var iddetails = {
             id: rollno,
         };
-        httpreq('/unattempted',JSON.stringify(iddetails)).then((data)=>{
-            falseArray = JSON.parse(data).falselist;
-            console.log(falseArray);
-            min = 0;
-            max = falseArray.length;
-            console.log(max);
-            random = gen4(min,max);
-            var result = [falseArray[random[0]],falseArray[random[1]],falseArray[random[2]],falseArray[random[3]]];
-            console.log("Random Number Generated : ",
-                result
-                );
-            httpreq('/updatesections',JSON.stringify({result,id:rollno})).then((data)=>{
-                console.log("successfully updated");
-            })
-            .catch((err)=>{
-                console.log("unable to update the sections");
-            });
-        });        
+        httpreq('/secsel',JSON.stringify(iddetails)).then((data)=>{
+            console.log(data);
+        })
+        .catch((err)=>{
+            console.log("cannot connect to secsel route");
+        });
     });
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+    // sel("#randomizebtn").addEventListener("click",()=>{
+    //     var min;//inclusive [
+    //     var max;//exclusive )
+    //     var rollno = sel("#rollno").value;
+    //     console.log(rollno);
+    //     var iddetails = {
+    //         id: rollno,
+    //     };
+    //     httpreq('/unattempted',JSON.stringify(iddetails)).then((data)=>{
+    //         falseArray = JSON.parse(data).falselist;
+    //         console.log(falseArray);
+    //         min = 0;
+    //         max = falseArray.length;
+    //         console.log(max);
+    //         random = gen4(min,max);
+    //         var result = [falseArray[random[0]],falseArray[random[1]],falseArray[random[2]],falseArray[random[3]]];
+    //         console.log("Random Number Generated : ",
+    //             result
+    //             );
+    //         httpreq('/updatesections',JSON.stringify({result,id:rollno})).then((data)=>{
+    //             console.log("successfully updated");
+    //         })
+    //         .catch((err)=>{
+    //             console.log("unable to update the sections");
+    //         });
+    //     });        
+    // });
     
     function gen4(min,max){
         random[0] = generate(min,max);
@@ -74,8 +88,3 @@ var random = [];
     }
 })();
 
-
-
-{
-
-}
