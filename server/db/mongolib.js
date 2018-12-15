@@ -1,5 +1,5 @@
 
-let MODULE=function(jwt,mongoose){
+let MODULE=function(mongoose,jwt,hbs){
 let coll;
 let root;
 let defaults = {
@@ -134,6 +134,7 @@ let defaults = {
                 
             function init(a, b) {
                 coll = b;
+
                 root = mongoose.connection.collection(coll);
                 let read = readDb.bind(null, root);
                 let update = findAndUpdate.bind(null, root);
@@ -143,9 +144,23 @@ let defaults = {
                 };
             }
 
+            function genHTML(path, datar,no) {
+                return new Promise((resolve, reject) => {
+                    fs.readFile(path, function (err, data) {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+                      let template=hbs.compile(data.toString());
+                      
+                      resolve(datar+template({section:no}));
+                    })
+                });
+            }
+
             return {
                 init,
-                defaults,generateJWT,verifyJWT,revive
+                defaults,generateJWT,verifyJWT,revive,genHTML
             }
     
 }

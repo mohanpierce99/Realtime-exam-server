@@ -5,7 +5,7 @@ const Student = require('./db/models/Student.js');
 const cookie=require('cookie-parser');
 const router = require('./router.js');
 const mongolib=require('./db/mongolib.js');
-const jwt=require('jwtwebtoken');
+const jwt=require('jsonwebtoken');
 let app = express();
 
 const port = process.env.PORT || 3000;
