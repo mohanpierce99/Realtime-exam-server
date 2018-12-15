@@ -3,6 +3,7 @@ function router(bundle) {
     let {
         mongoose
     } = bundle.mongoose;
+
     let Student = bundle.Student;
     let express = bundle.express;
     let bodyParser = bundle.bodyParser;
@@ -19,7 +20,7 @@ function router(bundle) {
         res.send('../public/index.html');
     });
     
-
+    console.log(root);
     let defaults = {
         login_count: 0,
         is_loggedin: false,

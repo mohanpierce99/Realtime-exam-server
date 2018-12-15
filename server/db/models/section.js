@@ -3,11 +3,9 @@ const mongoose = require('mongoose');
 const sectionSchema = new mongoose.Schema({
 	//student
 	id:{
-		type: Number,
-		minlength: 12,
+		type: String,
 		required: true,
 		trim: true,
-		unique: false
 		},
 	html:{
         type:String,
@@ -20,6 +18,6 @@ const sectionSchema = new mongoose.Schema({
 
 });
 
-const Section = mongoose.model('students' , sectionSchema);
+const section = mongoose.model('students' , sectionSchema);
 
-module.exports=Section;
+module.exports=section;
