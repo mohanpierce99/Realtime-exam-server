@@ -1,0 +1,56 @@
+{"_id":{"$oid":"5c1523adaf33a326a885224d"},"id":"S1","html":"./../resources/views/1.hbs","answers":{"S1Q1":["8:30","8:30 AM","eight thirty"],"S1Q2":["Reference books"],"S1Q3":["Children’s books"],"S1Q4":["Be repaired","repair"],"S1Q5":["Be sold","sell"],"S1Q6":["Thursday"],"S1Q7":["Movies"],"S1Q8":["2:30","2:30 PM","14:30"],"S1Q9":["Meeting"],"S1Q10":["6:30","6:30 PM","18:30"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885224e"},"id":"S2","html":"./../resources/views/2.hbs","answers":{"S2Q1":true,"S2Q2":true,"S2Q4":true,"S2Q7":true,"S2Q9":true,"S2Q10":["Film"],"S2Q11":["Discussion"],"S2Q12":["Lectures"],"S2Q13":["Games"],"S2Q14":["Dance"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885224f"},"id":"S3","html":"./../resources/views/3.hbs","answers":{"S3Q1":true,"S3Q3":true,"S3Q5":true,"S3Q7":["Interviews","journal articles"],"S3Q8":["Photos","Photos of birds"],"S3Q10":true,"S3Q12":true,"S3Q16":true,"S3Q20":true,"S3Q21":true},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852250"},"id":"S4","html":"./../resources/views/4.hbs","answers":{"S4Q1":["Individual reefs","Coral reefs"],"S4Q2":["Islands"],"S4Q3":["Coral","Corals"],"S4Q4":true,"S4Q7":true,"S4Q8":true,"S4Q11":true,"S4Q12":true,"S4Q13":["Rising sea temperatures"],"S4Q14":["Shading the reef","Shading certain areas"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852251"},"id":"S5","html":"./../resources/views/5.hbs","answers":{"S5Q1":["June"],"S5Q2":["Karla"],"S5Q3":["257"],"S5Q4":["Vegetarian"],"S5Q6":true,"S5Q8":true,"S5Q13":true,"S5Q14":true,"S5Q17":true,"S5Q18":true},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852252"},"id":"S6","html":"./../resources/views/6.hbs","answers":{"S6Q1":["B"],"S6Q2":["E"],"S6Q3":["A"],"S6Q4":["F"],"S6Q5":["C"],"S6Q6":["Swimming lessons"],"S6Q7":["Tennis competition"],"S6Q8":["Party","club party"],"S6Q10":true,"S6Q14":true},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852253"},"id":"S7","html":"./../resources/views/7.hbs","answers":{"S7Q2":true,"S7Q3":true,"S7Q6":true,"S7Q7":true,"S7Q9":true,"S7Q10":"1895","S7Q11":"New wing","S7Q12":"Local artists","S7Q13":"Art history","S7Q14":"Concerts"},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852254"},"id":"S8","html":"./../resources/views/8.hbs","answers":{"S8Q3":true,"S8Q6":true,"S8Q8":true,"S8Q10":true,"S8Q13":true,"S8Q16":["Calendar"],"S8Q17":["Served tomatoes"],"S8Q18":["In public"],"S8Q19":["Tomato recipe","tomato recipes"],"S8Q20":["Raw tomatoes"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852255"},"id":"S9","html":"./../resources/views/9.hbs","answers":{"S9Q1":["February"],"S9Q2":["One"],"S9Q3":["Wilson"],"S9Q4":["2336189872"],"S9Q7":true,"S9Q10":true,"S9Q11":true,"S9Q14":true,"S9Q15":true,"S9Q20":true},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852256"},"id":"S10","html":"./../resources/views/10.hbs","answers":{"S10Q1":["18"],"S10Q2":["9"],"S10Q3":["Hill Park"],"S10Q4":["Bay bridge"],"S10Q5":["Green street"],"S10Q6":["View"],"S10Q7":["Boats"],"S10Q8":["Eat"],"S10Q9":["Baskets"],"S10Q10":["Theatre"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852257"},"id":"S11","html":"./../resources/views/11.hbs","answers":{"S11Q1":["Three weeks"],"S11Q2":["Shopping mall"],"S11Q3":["30"],"S11Q4":["Government study"],"S11Q5":["Design questionnaire"],"S11Q6":["Professor's approval"],"S11Q7":["Conduct interviews"],"S11Q8":["Analyze results"],"S11Q9":["Charts"],"S11Q10":["Class presentation"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852258"},"id":"S12","html":"./../resources/views/12.hbs","answers":{"S12Q1":["Was born"],"S12Q2":["Support her family"],"S12Q3":["First novel"],"S12Q4":["1862"],"S12Q5":["After the war"],"S12Q6":["1866"],"S12Q7":["1868"],"S12Q8":["May","youngest sister","Alcott's youngest sister"],"S12Q9":["1882"],"S12Q10":["Died"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852259"},"id":"S13","html":"./../resources/views/13.hbs","answers":{"S13Q1":["Kramer"],"S13Q2":["58"],"S13Q3":["Residential"],"S13Q4":["Office manager"],"S13Q5":["6375559014"],"S13Q6":["Nine years"],"S13Q7":["Long distance"],"S13Q8":["Internet"],"S13Q9":["Friday"],"S13Q10":["Morning"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885225a"},"id":"S14","html":"./../resources/views/14.hbs","answers":{"S14Q2":true,"S14Q6":true,"S14Q8":true,"S14Q10":true,"S14Q13":["Clown"],"S14Q14":["Concert"],"S14Q15":["Singing"],"S14Q16":["International"],"S14Q17":["Games"],"S14Q18":["Crafts"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885225b"},"id":"S15","html":"./../resources/views/15.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885225c"},"id":"S16","html":"./../resources/views/16.hbs","answers":{"S16Q1":["Forested area"],"S16Q2":["Plant foods"],"S16Q3":["Insects","fish"],"S16Q4":["The winter"],"S16Q5":["Twenty-five years","Twenty five years"],"S16Q14":["A"],"S16Q15":["B"],"S16Q16":["B"],"S16Q17":["A"],"S16Q18":["A"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885225d"},"id":"S17","html":"./../resources/views/17.hbs","answers":{"S17Q1":["32"],"S17Q2":["electricity"],"S17Q3":["Internet"],"S17Q4":["bus"],"S17Q5":["Hooper"],"S17Q7":true,"S17Q9":true,"S17Q10":true,"S17Q14":true,"S17Q16":true},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885225e"},"id":"S18","html":"./../resources/views/18.hbs","answers":{"S18Q1":["24","twenty-four"],"S18Q2":["18","eighteen"],"S18Q3":["5","five"],"S18Q4":["19","nineteen"],"S18Q5":["Family ticket"],"S18Q6":["107"],"S18Q7":["online"],"S18Q8":["confirmation email","confirmation e-mail"],"S18Q9":["by telephone"],"S18Q10":["in person"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885225f"},"id":"S19","html":"./../resources/views/19.hbs","answers":{"S19Q1":["seven weeks"],"S19Q2":["five people"],"S19Q3":["grab people's attention","grab peoples attention"],"S19Q4":true,"S19Q7":true,"S19Q8":true,"S19Q9":true,"S19Q11":true,"S19Q13":["ground floor"],"S19Q14":["assignment"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852260"},"id":"S20","html":"./../resources/views/20.hbs","answers":{"S20Q1":true,"S20Q5":true,"S20Q9":true,"S20Q12":true,"S20Q15":true,"S20Q16":["rammed earth"],"S20Q17":["susceptible to erosion"],"S20Q18":["frequent sandstorms"],"S20Q19":["eyesight"],"S20Q20":["architectural feats"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852261"},"id":"S21","html":"./../resources/views/21.hbs","answers":{"S21Q1":["bus tour"],"S21Q2":["Building"],"S21Q3":["9","nine"],"S21Q4":["20","twenty"],"S21Q5":["hotel"],"S21Q6":["15","fifteen"],"S21Q7":["2","two"],"S21Q8":["standard"],"S21Q9":["55","fifty-five"],"S21Q10":["audioguide","audio-guide"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852262"},"id":"S22","html":"./../resources/views/22.hbs","answers":{"S22Q1":true,"S22Q3":true,"S22Q6":true,"S22Q8":true,"S22Q9":true,"S22Q10":["muscle building"],"S22Q11":["fat loss"],"S22Q12":["healthy body"],"S22Q13":["relaxation"],"S22Q14":["interval trainings"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852263"},"id":"S23","html":"./../resources/views/23.hbs","answers":{"S23Q2":true,"S23Q6":true,"S23Q9":true,"S23Q11":true,"S23Q13":true,"S23Q16":true,"S23Q21":true,"S23Q23":true,"S23Q25":["memory"],"S23Q26":["learnt sensation"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852264"},"id":"S24","html":"./../resources/views/24.hbs","answers":{"S24Q1":["gasoline"],"S24Q2":["self-esteem","self esteem"],"S24Q3":["narcissistic"],"S24Q6":true,"S24Q7":true,"S24Q12":true,"S24Q13":["co-presently","copresently"],"S24Q14":["didactic"],"S24Q15":["implicit"],"S24Q16":["intimate"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852265"},"id":"S25","html":"./../resources/views/25.hbs","answers":{"S25Q1":["Shopping"],"S25Q2":["Guided tours"],"S25Q3":["More than 12"],"S25Q4":["Notice board"],"S25Q5":["13th February","13 February"],"S25Q6":["Tower of London"],"S25Q7":["Bristol"],"S25Q8":["American museum"],"S25Q9":["student newspaper"],"S25Q10":["Yentob"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852266"},"id":"S26","html":"./../resources/views/26.hbs","answers":{"S26Q1":["Coal","firewood"],"S26Q2":["Local craftsmen"],"S26Q3":["160"],"S26Q4":["Woodside"],"S26Q5":["Ticket office"],"S26Q6":["Gift shop"],"S26Q7":["Workshop"],"S26Q8":["Showroom"],"S26Q9":["Cafe"],"S26Q10":["Cottages"]},"__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852267"},"id":"S27","html":"./../resources/views/27.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852268"},"id":"S28","html":"./../resources/views/28.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852269"},"id":"S29","html":"./../resources/views/29.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885226a"},"id":"S30","html":"./../resources/views/30.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885226b"},"id":"S31","html":"./../resources/views/31.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885226c"},"id":"S32","html":"./../resources/views/32.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885226d"},"id":"S33","html":"./../resources/views/33.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885226e"},"id":"S34","html":"./../resources/views/34.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885226f"},"id":"S35","html":"./../resources/views/35.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852270"},"id":"S36","html":"./../resources/views/36.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852271"},"id":"S37","html":"./../resources/views/37.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852272"},"id":"S38","html":"./../resources/views/38.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852273"},"id":"S39","html":"./../resources/views/39.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852274"},"id":"S40","html":"./../resources/views/40.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852275"},"id":"S41","html":"./../resources/views/41.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852276"},"id":"S42","html":"./../resources/views/42.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852277"},"id":"S43","html":"./../resources/views/43.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852278"},"id":"S44","html":"./../resources/views/44.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852279"},"id":"S45","html":"./../resources/views/45.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885227a"},"id":"S46","html":"./../resources/views/46.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885227b"},"id":"S47","html":"./../resources/views/47.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885227c"},"id":"S48","html":"./../resources/views/48.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885227d"},"id":"S49","html":"./../resources/views/49.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885227e"},"id":"S50","html":"./../resources/views/50.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a885227f"},"id":"S51","html":"./../resources/views/51.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852280"},"id":"S52","html":"./../resources/views/52.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852281"},"id":"S53","html":"./../resources/views/53.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852282"},"id":"S54","html":"./../resources/views/54.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852283"},"id":"S55","html":"./../resources/views/55.hbs","__v":0}
+{"_id":{"$oid":"5c1523adaf33a326a8852284"},"id":"S56","html":"./../resources/views/56.hbs","__v":0}

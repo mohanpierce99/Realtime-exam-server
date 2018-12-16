@@ -7,7 +7,7 @@ var model = mongoose.model("sections",section.schema);
 for(var i=1;i<=56;i++){
     var newsection = new model({
         id:`S${i}`,
-        html:"./../public/1.html",
+        html:`./../resources/views/${i}.hbs`,
         answers:{},
     });
     
