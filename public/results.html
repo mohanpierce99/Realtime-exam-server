@@ -16,35 +16,58 @@
 </head>
 
 <body>
-        
     <div class="row justify-content-md-center animated zoomIn g-margin-t-40--md  g-margin-t-80--sm">
         <div class="col-md-12">
             <div class="card">
-                    <div class="dropdown ">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Dropdown button
-                            </button>
-                            <div class="dropdown-menu animated fadeIn" style="padding:5px;" aria-labelledby="dropdownMenuButton">
-                                    <div style="display:inline-flex" >
-                                        <div>
-                                            <label for="dept" >Department</label>
-                                            <input class="form-control"  type="text" name="dept" id="dept">
-                                        </div>
-                                        <div>
-                                            <label for="sec" >section</label>
-                                            <input class="form-control" type="text" name="section" id="section">
-                                        </div>       
+                <div class="dropdown ">
+                    <button class="btn btn-secondary dropdown-toggle extend" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Options
+                    </button>
+                    <div class="dropdown-menu animated fadeIn extend" style="padding:5px;" aria-labelledby="dropdownMenuButton">
+                        <div class="row card remove-shadow animated flipInX" style="background:#f0f1f3">
+                            <div class="col-md-12">
+                                <label for="rollno">Rollno</label>
+                                <input class="form-control" type="number" name="rollno" id="id">
                             </div>
-                          </div>
-                
+                        </div>
+                        
+                        <div class="card remove-shadow animated flipInX" style="background:#f0f1f3">
+                            <div style="display:flex" class="row">
+                                <div class="col-md-6">
+                                    <label for="dept">Department</label>
+                                    <input class="form-control" type="text" name="dept" id="dept">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="sec">Section</label>
+                                    <input class="form-control" type="text" name="section" id="sec">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Batch">Batch</label>
+                                    <input id="batch" class="form-control" type="number" min="1900" max="2099" step="1" value="2017" />
+                                </div>
+                                <div style="margin:30px;">
+                                    <label for="Batch">Rural</label>
+                                    <input id="rural" class="form-control" type="checkbox" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+        <script src="./results.js"></script>
 </body>
 
 </html>
