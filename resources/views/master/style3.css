@@ -1,0 +1,66 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 350px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background: #FF416C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  margin-left: 13px;
+  width: 95%;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  font-size: 28px; 
+  padding: 0px 10px;
+}
+.ink{
+  background: linear-gradient(to right, rgba(13,13,13,1) 0%, rgba(15,15,15,0.96) 12%, rgba(15,15,15,0.91) 25%, rgba(10,10,10,0.86) 39%, rgba(9,9,9,0.84) 46%, rgba(8,8,8,0.84) 50%, rgba(0,0,0,0.84) 51%, rgba(3,3,3,0.84) 60%, rgba(3,3,3,0.84) 73%, rgba(8,8,8,0.84) 76%, rgba(5,5,5,0.84) 91%);
+  color:black;
+  width:100%;
+}
+
+
+.a2{
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background:white;
+}
+#gif{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
