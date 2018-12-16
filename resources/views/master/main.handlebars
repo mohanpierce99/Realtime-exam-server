@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="style3.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+{{body}}
+  <div class="sidenav">
+    <h1 style="text-align: center"><img src="sand-clock.gif" id="gif">Time Left</h1></img>
+    <div id="div" align="center"></div>
+
+
+    <a><button type="button" class="btn btn-primary" style="width:100%">Take test</button></a>
+    <ul style="list-style-type:none; margin:0; padding:0">
+      <li>
+        <a class="ink">Section 1</a>
+        <button class="a2">1</button>
+        <button class="a2">2</button>
+        <button class="a2">3</button>
+        <button class="a2">4</button>
+        <button class="a2">5</button>
+      </li>
+      <li>
+        <button class="a2">6</button>
+        <button class="a2">7</button>
+        <button class="a2">8</button>
+        <button class="a2">9</button>
+        <button class="a2">0</button>
+      </li>
+      <li>
+        <a class="ink">Section 2</a>
+        <button class="a2">1</button>
+        <button class="a2">2</button>
+        <button class="a2">3</button>
+        <button class="a2">4</button>
+        <button class="a2">5</button>
+      </li>
+      <li>
+        <button class="a2">6</button>
+        <button class="a2">7</button>
+        <button class="a2">8</button>
+        <button class="a2">9</button>
+        <button class="a2">0</button>
+      </li>
+      <li>
+        <a class="ink">Section 3</a>
+        <button class="a2">1</button>
+        <button class="a2">2</button>
+        <button class="a2">3</button>
+        <button class="a2">4</button>
+        <button class="a2">5</button>
+      </li>
+      <li>
+        <button class="a2">6</button>
+        <button class="a2">7</button>
+        <button class="a2">8</button>
+        <button class="a2">9</button>
+        <button class="a2">0</button>
+      </li>
+      <li>
+        <a class="ink">Section 4</a>
+        <button class="a2">1</button>
+        <button class="a2">2</button>
+        <button class="a2">3</button>
+        <button class="a2">4</button>
+        <button class="a2">5</button>
+      </li>
+      <li>
+        <button class="a2">6</button>
+        <button class="a2">7</button>
+        <button class="a2">8</button>
+        <button class="a2">9</button>
+        <button class="a2">0</button>
+      </li>
+      </li>
+  </div>
+
+  <div class="main">
+  </div>
+  <input type="text" name="sdkfsjf" id="nitin">
+
+
+
+  <script type="text/javascript">
+    var start = function (timeleft) {
+      var func = () => {
+        timeleft = timeleft + Number(document.querySelector("#nitin").value);
+      };
+      var counter = 0;
+      var div = document.querySelector('#div')
+
+      function convert(s) {
+        // console.log(s);
+        var min = Math.floor(s / 60);
+        var char = (min < 10) ? '0' + min.toString() : min.toString();
+        var sec = Math.floor(s % 60);
+        var sec1 = (sec < 10) ? '0' + sec.toString() : sec.toString();
+        return char + ':' + sec1;
+      }
+
+      var interval = setInterval(function () {
+        counter++;
+        if ((timeleft - counter) === 0) {
+          window.location.replace("http://www.google.com");
+        }
+        console.log(timeleft - counter);
+        var s = convert(timeleft - counter);
+        var p = `<h1>${s}</h1>`;
+        div.innerHTML = p;
+      }, 1000)
+
+
+      // setTimeout(function () {
+      //   clearInterval(interval);
+      //   window.location.replace("http://www.google.com");
+      // }, ((timeleft) * 1000) + 500);
+
+      return func;
+    }
+  </script>
+</body>
+
+</html>
