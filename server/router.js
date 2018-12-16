@@ -1,9 +1,7 @@
 function router(bundle) {
     let app = bundle.app;
     let cookieparse = bundle.cookie;
-    let {
-        mongoose
-    } = bundle.mongoose;
+    let {mongoose} = bundle.mongoose;
     let Student = bundle.Student;
     let express = bundle.express;
     let bodyParser = bundle.bodyParser;
@@ -12,6 +10,7 @@ function router(bundle) {
     let jwtlib = bundle.jwtlib(jwt);
     let hbs = bundle.hbs;
     let randomsection = bundle.randomsection;
+    let pathgen=bundle.pathgen;
 
     /*--------------------------------------------------------*/
     let studColl = mongolib.init("students");
@@ -24,32 +23,16 @@ function router(bundle) {
     /*-----------------------------------------------------------*/
     app.use(cookieparse());
     app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded());
 
     /*-----------------------------------------------------------*/
-    hbs.registerHelper('cut', function clutch(data) {
-        var regex = /\d+/g;
-        var n = 4;
-        var usr = data.match(regex);
-        let final;
-        for (let i = 0; i < 2; i++) {
-            if (usr[i].length === 1) {
-                usr[i] = "0" + usr[i]
-            };
-            if (usr[i][1] == 0) {
-                data = data.replace(usr[i], "10");
-            } else {
-                data = data.replace(usr[i], usr[i][1]);
-                console.log(data);
-            }
-            usr = data.match(regex);
-            final = +usr[i] + (n - 1) * 10;
-            data = data.replace(usr[i], final);
-        }
-        return data;
-    });
+    
     /*-----------------------------------------------------*/
+    var patharr;
 
-    app.post('/login', (req, res) => {
+  
+
+    app.post('/genlog', (req, res) => {
         let rollno = +req.body.id;
         studColl.read({
             id: rollno
@@ -58,10 +41,11 @@ function router(bundle) {
                 res.status(401).send("Please Signup or enter Correct Register No");
                 return;
             } else if (data[0].is_loggedin) {
-                res.send(401).send("User already in session");
+                res.status(401).send("User already in session");
                 return;
             }
             randomsection(mongoose, 'students', data[0]).then((path) => {
+                    patharr=path;
                     console.log(path);
                     return jwtlib.generateJWT({
                         id: data[0].id,
@@ -75,15 +59,15 @@ function router(bundle) {
                     return studColl.update({
                         id: rollno
                     }, {
-                        is_loggedin: true,
-                        token: token
+                        // is_loggedin: true,
+                        token
                     })
                 }).then((data) => {
 
                     res.cookie("auth-token", data.token, {
                         maxAge: 2400000
                     });
-                    res.send("Successfully logged in");
+                    pathgen(mongoose,patharr,hbs,res);
                 }).catch((err) => {
                     res.status(404).send("Something went wrong");
                 });

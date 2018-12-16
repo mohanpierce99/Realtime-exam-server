@@ -9,11 +9,12 @@ const jwt=require('jsonwebtoken');
 const hbs=require('hbs');
 const jwtlib=require('./utility/jwtlib');
 const randomsection = require('./utility/randomsection');
+const pathgen=require('./utility/pathgen.js');
 let app = express();
 
 const port = process.env.PORT || 3000;
 app.use(express.static(__dirname + "/public"));
-
+app.set('view engine','hbs');
 app.use(bodyParser.json());
 
 router({
@@ -28,7 +29,7 @@ router({
      jwt,
      jwtlib,
      hbs,
-     randomsection
+     randomsection,pathgen
 });
 
 app.listen(port);
