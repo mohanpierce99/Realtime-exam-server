@@ -21,7 +21,7 @@ function generate(min, max) {
 
 
 var randomsection = (mongoose,coll, document) => {
-    let root = mongoose.connection.db.collection(coll);
+    let root = mongoose.connection.collection(coll);
 
     return new Promise((res, rej) => {
         let user = document;
