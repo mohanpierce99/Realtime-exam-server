@@ -15,7 +15,6 @@ function router(bundle) {
         fallthrough: true
     }));
 /*-----------------------------------------------------------*/
-
     app.use(cookieparse());
     app.use(bodyParser.json());
   
@@ -78,6 +77,8 @@ function router(bundle) {
         });
 
     });
+
+
 /*-----------------------------------------------------------*/
 
 }

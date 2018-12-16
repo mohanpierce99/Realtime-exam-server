@@ -6,6 +6,7 @@ const cookie=require('cookie-parser');
 const router = require('./router.js');
 const mongolib=require('./db/mongolib.js');
 const jwt=require('jsonwebtoken');
+const hbs=require('hbs');
 let app = express();
 
 const port = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 router({
     app,
+    hbs,
     express,
     bodyParser,
     mongoose,
