@@ -8,6 +8,7 @@ const mongolib=require('./utility/mongolib');
 const jwt=require('jsonwebtoken');
 const hbs=require('hbs');
 const jwtlib=require('./utility/jwtlib');
+const randomsection = require('./utility/randomsection');
 let app = express();
 
 const port = process.env.PORT || 3000;
@@ -26,7 +27,8 @@ router({
     mongolib,
      jwt,
      jwtlib,
-     hbs
+     hbs,
+     randomsection
 });
 
 app.listen(port);
