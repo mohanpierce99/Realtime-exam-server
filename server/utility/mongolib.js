@@ -1,5 +1,5 @@
 
-let MODULE=function(mongoose,jwt,hbs){
+let MODULE=function(mongoose){
 let coll;
 let root;
 let defaults = {
@@ -82,39 +82,10 @@ let defaults = {
     
     };
     
-    function generateJWT(jwt, payload, pass) {
-        return new Promise((res, rej) => {
-                    try {
-                        return jwt.sign(payload, pass, {
-                            expiresIn: 2400
-                        });
-                    } catch (err) {
-                        rej(err);
-                    }
     
-                });
-            }
+                
     
-                function verifyJWT(jwt, token, pass) {
-                    return new Promise((res, rej) => {
-                        try {
-                            res(jwt.verify(token, pass));
-                        } catch (err) {
-                            rej(err);
-                        }
-                    });
-                }
-    
-                function revive(jwt, token) {
-                    return new Promise((res, rej) => {
-                        try {
-                            return jwt.decode(token);
-                        } catch (err) {
-                            rej(err);
-                        }
-                    });
-                }
-    
+               
     
                 async function findAndUpdate(root, filter, update, count) {
                     let result;
@@ -132,7 +103,7 @@ let defaults = {
                 }
 
                 
-            function init(a, b) {
+            function init(b) {
                 coll = b;
 
                 root = mongoose.connection.collection(coll);
@@ -144,23 +115,11 @@ let defaults = {
                 };
             }
 
-            function genHTML(path, datar,no) {
-                return new Promise((resolve, reject) => {
-                    fs.readFile(path, function (err, data) {
-                        if (err) {
-                            reject(err);
-                            return;
-                        }
-                      let template=hbs.compile(data.toString());
-                      
-                      resolve(datar+template({section:no}));
-                    })
-                });
-            }
+           
 
             return {
                 init,
-                defaults,generateJWT,verifyJWT,revive,genHTML
+                defaults
             }
     
 }

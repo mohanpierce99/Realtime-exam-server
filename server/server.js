@@ -4,7 +4,7 @@ const mongoose = require('./db/mongoconnect.js');
 const Student = require('./db/models/Student.js');
 const cookie=require('cookie-parser');
 const router = require('./router.js');
-const mongolib=require('./db/mongolib.js');
+const mongolib=require('./utility/mongolib');
 const jwt=require('jsonwebtoken');
 const hbs=require('hbs');
 const jwtlib=require('./utility/jwtlib');
@@ -24,7 +24,9 @@ router({
     Student,
     cookie,
     mongolib,
-     jwt
+     jwt,
+     jwtlib,
+     hbs
 });
 
 app.listen(port);

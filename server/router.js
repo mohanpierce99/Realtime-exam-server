@@ -5,12 +5,15 @@ function router(bundle) {
     let Student = bundle.Student;
     let express = bundle.express;
     let bodyParser = bundle.bodyParser;
-    let mongolib = bundle.mongolib(bundle.hbs,hbsmongoose,bundle.jwt);
+    let mongolib = bundle.mongolib(mongoose);
+    let jwtlib = bundle.jwtlib;
+    let hbs = bundle.hbs;
 
 /*--------------------------------------------------------*/
-    let studColl = mongolib.init(mongoose, "students");
-    let teacherPref = mongolib.init(mongoose, "teacherpref");
+    let studColl = mongolib.init("students");
+    let teacherPref = mongolib.init("teacherpref");
     let defaults = mongolib.defaults;
+    console.log(typeof jwtlib);
 
     app.use(express.static(__dirname + "./../public", {
         fallthrough: true
