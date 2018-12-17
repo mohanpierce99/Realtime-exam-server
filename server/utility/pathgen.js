@@ -5,7 +5,7 @@
 //         let fs=require('fs');
 //         let pathist=require('path');
 //         let mansec=lib.init("sections");
-//         paths=paths||[".././../resources/views/1.hbs",".././../resources/views/2.hbs",".././../resources/views/3.hbs",".././../resources/views/4.hbs"];
+//         paths=[".././../resources/views/52.hbs",".././../resources/views/53.hbs",".././../resources/views/54.hbs",".././../resources/views/29.hbs"];
 //         let n=0;
     
     
@@ -13,7 +13,7 @@
 //             var regex=/\d+/g;
 //                 var usr=data.match(regex);
 //                 let final;
-//                 for(let i=0;i<2;i++){
+//                 for(let i=0;i<usr.length;i++){
 //         if(usr[i].length===1){usr[i]="0"+usr[i]};
 //                     if(usr[i][1]==0){
 //                         data=data.replace(usr[i],"10");

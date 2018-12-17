@@ -1,10 +1,13 @@
-<audio controls="" controlslist="nodownload"><source src="./../audio/56.mp3" type="audio/mp3"> Your browser doesn't support audio teg!</audio><div id="exam-text">
-  <p><strong>SECTION 4. </strong><strong>QUESTIONS 31-40</strong>          </p>
+<audio controls="" controlslist="nodownload"><source src="./../audio/56.mp3" type="audio/mp3"> Your browser doesn't support audio teg!</audio><div id="exam-text" data-orginal={{sectionorg}}>
+  <p><strong>SECTION {{section}} </strong></p>
+  <p><strong>{{cut "QUESTIONS 31-40"}}</strong></p>
   <p>&nbsp;</p>
-  <p><strong>Questions 31 and 32</strong></p>
+  <p><strong>{{cut "Questions 31 and 32"}}</strong></p>
   
    <p>Choose <strong>TWO </strong>letters, <strong>A-E</strong></p>
     <p>Which <strong>TWO </strong>aspects did the new rules at the end of the 19th century focus on?</p>
+    <div>
+    <ol data-weight="2">
     <p>
       <input type="checkbox" id="ch9">
       <strong>A</strong> cooperation <span id="s9"> </span></p>
@@ -21,9 +24,11 @@
       <input type="checkbox" id="ch13">
       <strong>E</strong> business model <span id="s13"> </span></p>
     <p></p>
+    </ol>
+    </div>
     <br>
   
-   <p><strong>Questions 33-40</strong></p>
+   <p><strong>{{cut "Questions 33-40"}}</strong></p>
   <p>Complete the sentences below. </p>
   <p>Write <strong>ONLY ONE WORD</strong> for each answer.</p>
   <p>&nbsp; </p>
@@ -31,40 +36,40 @@
     <tbody><tr>
       <td width="90%" height="85%" valign="top"><p align="center"><strong>Football in the UK</strong></p><br>
 <ul>
-  <li> At present the main reason why UK schools push football education is the preassure from <strong>33.</strong> 
-            <input type="text" class="ex-input" style="width:120px" id="ex1" required="required"> 
+  <li> At present the main reason why UK schools push football education is the preassure from <strong></strong> 
+            <input type="text" class="ex-input" style="width:120px" data-qno="3" id="ex1" required="required"> 
             . <span id="s1"></span></li>
   <p> </p>
           
-          <li> Prior to the 19th, football players used different <strong>34.</strong>
-            <input type="text" class="ex-input" style="width:150px" id="ex2" required="required">  
+          <li> Prior to the 19th, football players used different <strong></strong>
+            <input type="text" class="ex-input" style="width:150px" data-qno="4" id="ex2" required="required">  
         of rules. <span id="s2"></span></li><p> </p>
           
-         <li> People attempted to standardise the rules from the whole <strong>35.</strong>
-           <input type="text" class="ex-input" style="width:150px" id="ex3" required="required">, known as the 'Cambridge Rules' in 1848. <span id="s3"></span></li>
+         <li> People attempted to standardise the rules from the whole <strong></strong>
+           <input type="text" class="ex-input" style="width:150px" data-qno="5" id="ex3" required="required">, known as the 'Cambridge Rules' in 1848. <span id="s3"></span></li>
        <p> </p>
-          <li>Attendences were increasing due to the improvement of infrastructure and the <strong>36.</strong>
-            <input type="text" class="ex-input" style="width:150px" id="ex4" required="required"> 
+          <li>Attendences were increasing due to the improvement of infrastructure and the <strong></strong>
+            <input type="text" class="ex-input" style="width:150px" data-qno="6" id="ex4" required="required"> 
         system. <span id="s4"></span></li>
        <p> </p>
           
-          <li>Football became popular and it is regarded as a <strong>37.</strong>
-            <input type="text" class="ex-input" style="width:150px" id="ex5" required="required">
+          <li>Football became popular and it is regarded as a <strong></strong>
+            <input type="text" class="ex-input" style="width:150px" data-qno="7" id="ex5" required="required">
           event. <span id="s5"></span>
           <p> </p>
-        </li><li>The football clubs were responsible for most of the <strong>38.</strong>
-          <input type="text" class="ex-input" style="width:150px" id="ex6" required="required"> 
+        </li><li>The football clubs were responsible for most of the <strong></strong>
+          <input type="text" class="ex-input" style="width:150px" id="ex6" data-qno="8" required="required"> 
           and development for the footbal association. <span id="s6"></span></li>
           
           
           
       <p> </p>
          
-        <li> <strong> 39.</strong> 
-          <input type="text" class="ex-input" style="width:150px" id="ex7" required="required"> against other teams were also organised by the football clubs. 
+        <li> <strong></strong> 
+          <input type="text" class="ex-input" style="width:150px" data-qno="9" id="ex7" required="required"> against other teams were also organised by the football clubs. 
           <span id="s7"></span></li><p></p><p> </p>
-         <li>In 1910s, <strong>40.</strong> 
-           <input type="text" class="ex-input" style="width:150px" id="ex8" required="required"> football players were approved of in the game. 
+         <li>In 1910s, <strong></strong> 
+           <input type="text" class="ex-input" style="width:150px" data-qno="10" id="ex8" required="required"> football players were approved of in the game. 
            <span id="s8"></span>
           </li><p></p>
         </ul></td>
@@ -78,28 +83,5 @@
  
    
 
-<div id="result" align="center"> </div>
-
-<button id="b2" type="button" onclick="toggle()"> 
-<img height="25px" src="/images/show.png" style="vertical-align: middle">Show answers</button>
-
-<div id="answers" style="display:none;" class="hint">  
-<p><strong>ANSWERS</strong></p>
-<p>Each question correctly answered scores 1 mark. <strong>Correct</strong> spelling is needed in all answers. </p>
-<p><strong>Section 4</strong></p>
-<ol start="31">
-<li>C</li>
-<li>D</li>
-<li>Parents</li>
-<li>Versions</li>
-<li>Country</li>
-<li>Transport</li>
-<li>Social</li>
-<li>Funding</li>
-<li>Competitions</li>
-<li>Professional</li>
-</ol>
-
-</div>
 
 </div>

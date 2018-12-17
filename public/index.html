@@ -31,9 +31,9 @@
               </div>
               <div class="card remove-shadow animated" id="loginportion">
                 <h3 class="text-center font-medium">Enter the portal using your register no</h3>
-                <form id="logindiv">
+                <form method="POST" id="logindiv" action="/home">
                   <div class="form-group">
-                    <input name="enrollno" id="rollno" class="form-control" type="number" class="extend" required>
+                    <input name="id" id="rollno" class="form-control" type="number" class="extend" required>
                   </div>
                   <div class="form-group">
                     <input type="submit" class="btn btn-success font-bold white extend" value="Submit">
@@ -45,14 +45,14 @@
       
               <div class="card remove-shadow d-none animated " id="signupportion">
                   <h3 class="text-center font-medium">Fill the signup form !</h3>
-                <form id="signupdiv">
+                <form id="signupdiv" method="POST" action="/newuser">
                   <div class="form-group" data-qno="1">
                     <label for="name">Enter Name:</label>
                     <input type="text" name="name" class="form-control" id="name"  placeholder="name" required>
                   </div>
                   <div class="form-group">
                     <label for="roll no">Enter Enrollment no:</label>
-                    <input type="Number" name="rollno" class="form-control" id="enroll"  placeholder="roll no" required>              
+                    <input type="Number" name="id" class="form-control" id="enroll"  placeholder="roll no" required>              
                   </div>
                   <div class="form-group">
                       <input type="submit" class="btn btn-success extend">

@@ -1,0 +1,959 @@
+/* CSS Document */
+
+html {
+    position: relative;
+    min-height: 100%;
+	max-width:100%;
+	overflow-x: hidden;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+}
+
+body 
+{
+	/*background-color: #58bc9d;*/
+	background-color:#0FD375;
+	/*background-image:url(images/notebook.jpg);*/
+	font-size:16px;
+	font-family:Verdana, Geneva, sans-serif;
+}
+
+
+/* ============================================== 
+====== страница и содержимое ===========================*/
+
+#page {
+	float:left;
+	width: 76%;
+	min-height:150%;
+	background-color: #FFF;
+	background-repeat:repeat-y;
+	/*margin-bottom:80px;  отступ для соц-сетей и футера*/
+	padding: auto;
+}
+
+#content table {
+border-collapse: collapse;
+}
+
+#content table p{
+	padding:0 10px 0 10px;
+}
+
+
+h1 {
+	font-size:x-large;
+	padding-bottom:3px;
+	line-height:1.5em;
+	padding-top:3px;
+}
+
+#content {
+	font-size:15px;
+	float:left;
+	background:#FFF;
+	min-height:18em;
+	line-height:170%;
+	padding: 3% 8% 3% 8%;
+}
+
+#content a, #content a:link, #content a:active, #content a:visited {
+	color:blue;
+	text-decoration:none;
+}
+#content a:hover{ text-decoration:underline;}
+/*#content a:hover {color:green; }*/
+
+#content .exam{	
+	font-family:Arial, Helvetica, sans-serif;
+	padding:10px 20px 10px 10px;
+}
+
+#content .exam li{
+	margin-top:8px;
+}
+
+#content .exam hr { 
+	background-color:#000; 
+	color:#000;
+	height:4px;
+}
+
+#content .exam-extract {
+	padding:10px 20px 10px 30px;
+	margin-left:50px;	
+	font-family:Arial, Helvetica, sans-serif;
+	width:60%;
+	border:solid;}
+
+#content .exam-text {
+	/*position:relative;
+	left: -6%;*/
+	font-size:18px;
+	padding:10px 20px 10px 20px;
+	margin-left:30px;	
+	font-family:Arial, Helvetica, sans-serif;
+	width:90%;
+	border:solid;}
+
+
+#content .task{
+	font-weight:bold; padding-left:20px;
+}
+
+#content .important {color:#093;}
+
+#mobile-subscribe{display:none;}
+
+audio{ width:60%;}
+
+button[onclick="answers()"], button[onclick="noanswers()"] {
+	font-size:0.9em;
+}
+/* ============================================== 
+======шапка сайта ===================================*/
+
+#header {
+	/*height:160px;*/
+	height:10em;
+	background-image:url(images/header2.png); /* задаем фон шапки*/
+	background-size: cover;
+	background-repeat:no-repeat; /* запрещаем размножение изображения по осям Х и Y */
+}
+
+.home-button, .home-button:link {
+	height:100%;
+	margin: 0.2em 0 0.2em 0;
+	display: inline-block;
+	outline: none;
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	text-align: center;
+	padding: .5em 0.5em .5em;
+}
+
+.home-button img {height:23px;}
+
+.button, .button:link {
+	width:110px;
+	margin: 0.2em 0 0.2em 0;
+	display: inline-block;
+	outline: none;
+	text-align: center;
+	text-decoration: none;
+	padding: .5em 7px .5em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	color:#FFF;
+	font-size:1.2em;
+	
+}
+.button:hover {
+	color:#F00;
+	text-decoration: none;
+}
+
+.green {
+	border: solid 1px #145311;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2ddb87), to(#13a760));
+	background: -moz-linear-gradient(top,  #2ddb87,  #13a760);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#2ddb87', endColorstr='#13a760');
+}
+
+.green:hover {
+	border: solid 1px #999;
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d8d8d8));
+	background: -moz-linear-gradient(top,  #fff,  #d8d8d8);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#d8d8d8');
+}
+.green:active {
+	background: -webkit-gradient(linear, left top, left bottom, from(#13a760), to(#2ddb87));
+	background: -moz-linear-gradient(top,  #13a760, #2ddb87);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#13a760', endColorstr='#2ddb87');
+}
+
+
+#menu
+{
+	background:#fff;
+	width:100%;
+	height:3.3em;
+	max-height:3.3em;
+	text-align:center;
+}
+
+
+/*Hide checkbox and labels*/
+.toggle, [id^=drop] { display: none; }
+
+#menu li ul a:link, #menu li ul a:visited, #menu li ul a:active{
+	font-size:1.1em;
+	color:#FFF;
+	text-decoration:none;
+
+}
+
+#menu li ul a li:hover  { color:#F00;}
+ 
+    /* first level */
+ 
+    #menu  ul
+    {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+   }
+        #menu > ul > li
+        {
+			width:15%;
+			vertical-align:top;
+			display: inline-block;
+        }
+ 
+    /* second level */
+ 
+    #menu li ul
+    {
+		position:relative;
+        top: 105%;
+		left:7%;
+		z-index:1;
+		overflow:hidden;
+    	max-height:0;
+		width:85%;
+		-webkit-border-radius: .5em; 
+		-moz-border-radius: .5em;
+		border-radius: .5em;
+		-webkit-transition:max-height 250ms ease-in;
+		-moz-transition:max-height 250ms ease-in;
+		-o-transition:max-height 250ms ease-in;
+		transition:max-height 250ms ease-in;
+    }
+        #menu li:hover ul
+        {
+			display:block;
+			max-width:inherit;
+			max-height:300px;
+			height:auto;
+			border:1px solid #CCC;
+        }
+		
+		#menu li ul li
+        {
+			padding:8% 2% 8% 2%;
+			/*padding: 7px 5px 7px 5px;*/
+			background-color:#2ddb87;
+			border-bottom:1px solid #CCC;
+        }
+		
+			#menu li ul li:hover
+			{
+				background-color:#fff;
+				color:#FFF;
+			}
+
+/*============================================== 
+Элементы внутреннего распложения контента и сайдбаров=====================*/
+
+/*===============правое меню===========================*/
+#sidebar-right
+{
+	width: 12%;
+	float:right;
+	margin:0;
+	padding:0;
+}
+
+/*===============левое меню============================*/
+#sidebar-left
+{
+	width: 12%;
+	float:left;
+	margin:0;
+	padding:0;
+}
+
+#donate {border:1px solid black;}
+
+#left-menu-under {display:none;}
+
+#left-menu
+{
+	position:relative;
+	top:10em;
+	padding: 0;
+	margin: 0;
+	text-align:right;
+	font-size:1em; 
+	/*font:Athelas;
+	font-family:Athelas, "Times New Roman", Times, serif;
+	font-size:1.2em; 	*/
+}
+
+#left-menu a:link,  #left-menu a:visited{
+    color: #000; /* Цвет ссылок */
+	text-decoration:none;
+}
+   
+#left-menu a:hover {
+		text-decoration:underline;
+} 
+
+.bookmark1, .bookmark2, .bookmark3, .bookmark4, .bookmark5
+{
+	margin: 20% 0px 0px 0px;
+	padding: 4% 10% 7% 20%;
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+}
+
+.sub1, .sub2, .sub3
+{
+	padding:5% ;
+	margin:2%;
+	margin-left:30%;
+	background:#fff;
+	margin-right:10%;
+	border-right:4px solid #cb41af;
+}
+.sub1 {border-right:4px solid #cb41af;}
+.sub2 {border-right:4px solid #3086ef;}
+.sub3 {border-right:4px solid #e65417;}
+
+.bookmark1 {	background-image:url(images/bookmark1.png);	}
+.bookmark2 {	background-image:url(images/bookmark2.png);	}
+.bookmark3 {	background-image:url(images/bookmark3.png);	}
+.bookmark4 {	background-image:url(images/bookmark4.png);	}
+.bookmark5 {	background-image:url(images/bookmark5.png);	}
+
+/* ============================================== 
+====== подписка на новости ==============================*/
+
+.news-letter {
+  position:relative;
+  top:15em;
+  border-radius: 5px;
+  width: 7em;
+  /*padding: 18px 12px 29px;*/
+  padding: 9% 7% 20%;
+  background: white !important;
+  border-bottom: 1px solid #c4c4c4;
+  margin-top: 10px;
+}
+
+.news-letter:before, .news-letter:after {
+  height: 10px;
+  background: inherit;
+  border-bottom: 1px solid #d2d2d2;
+  border-radius: 4px;
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  right: 0;
+
+}
+
+.news-letter:after {
+  bottom: 3px;
+  border-color: #dcdcdc;
+}
+
+.news-letter-title {
+    background: #FFF; /* newsletter background  */
+    color: #AAAAAA;
+    font-size: 14px;
+    padding: 8px;
+    text-align: center;
+  background: #fff;
+}
+
+.news-letter-title:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px; /* top header bar height */
+  background: #13a760;  /* top header bar color */
+  border-radius: 5px 5px 0 0;
+ 
+}
+
+input {
+	font-size: 11px;
+  font-family: inherit;
+  color: inherit;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.news-letter-input {
+  width: 100%;
+  height: 22px;
+  margin-bottom: 14px;
+  padding: 0 12px 2px;
+  font-size: 10px;
+  background: white;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 -2px #ebebeb;
+  box-shadow: inset 0 -2px #ebebeb;
+}
+
+.news-letter-input:focus {
+  border-color: #c4c4c4;
+  outline: none;
+  -webkit-box-shadow: inset 0 -2px #c4c4c4;
+  box-shadow: inset 0 -2px #c4c4c4;
+}
+
+.lt-ie9 .news-letter-input {
+  line-height: 48px;
+}
+
+.news-letter-button {
+  outline: 0; 
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+  height: 25px;
+  padding: 0;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #13a760; /* button background  */
+  border: 0;
+  border-bottom: 2px solid #b0afaf; /* newsletter button shadow */
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #b0afaf;
+  box-shadow: inset 0 -2px #b0afaf;
+}
+
+.news-letter-button:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+:-moz-placeholder {
+  color: #ccc;
+  font-weight: 300;
+}
+
+::-moz-placeholder {
+  color: #ccc;
+  opacity: 1;
+  font-weight: 300;
+}
+
+::-webkit-input-placeholder {
+  color: #ccc;
+  font-weight: 300;
+}
+
+:-ms-input-placeholder {
+  color: #ccc;
+  font-weight: 300;
+}
+
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* ============================================== 
+====== футер ==============================*/
+
+#footer
+{
+	float:left;
+	width:100%;
+	color: #fff;
+	line-height: 200%;
+	/*background-image:url(images/footer.png);
+	background-repeat:no-repeat; */
+	padding: 1em 0 1em 0;
+	margin:0;
+    height:80px;
+   background:#13a760;
+	 /*background-color:#05894A;*/
+}
+
+#footer a:hover, #footer a:link, #footer a:visited
+{
+	color: #fff;
+	text-decoration:none;
+}
+
+#footer a:hover
+{
+	text-decoration: underline;
+}
+
+
+#social
+{
+	background:#fff;
+	width:100%; 
+	height: 30px;
+	margin:10px;
+	padding-top:20px;
+}
+
+.like {
+	display:inline-block;
+	padding-left:10px;
+	height:10px;
+}
+
+/* ============================================== 
+====== score maximizer form ==============================*/
+
+form.scoremax input:valid + span::after, form.scoremax select:valid + span::after {
+    content:" OK";
+	color:green;
+}
+
+form.scoremax input:invalid+ span::after, form.scoremax select:invalid + span::after {
+	content:" x";
+	color:red;
+}
+   
+.fixedwidth1 {
+	display:block;
+	width:85px;
+	float:left;
+}
+
+.fixedwidth2 {
+	display:block;
+	width:195px;
+	float:left;
+}
+
+/* =============== font-marking classes ======================*/
+.attention {
+	color:#13a760;
+	font-size:large;
+	font-weight:bold;
+}
+
+table {
+	line-height:120%;
+}
+
+.useful-links{
+	display:table-row-group;
+}
+.link-text a{
+	font-size:16px;
+	color:#009;
+}
+
+.link-text a:hover {
+	color:#3C3;
+	font-size:16px;
+}
+
+input.ex-input{
+   border: 0px; /*цвет рамки */
+   border-bottom: 1px solid #000;
+   background: #FFF !important; /* желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым*/
+   outline: none; /* удаляет обводку в браузерах хром(желтая) и сафари(синяя)*/
+   height: 24px; /* высота на свое усмотрение*/
+   width: 120px; /* ширина на свое усмотрение*/
+   color: #009; /*цвет шрифта в обычном состоянии*/
+   font-size: 14px; /* Размер шрифта*/
+}
+
+.ex-but, .ex-but:active {
+	-webkit-appearance: none;
+	border:none;
+	outline: 0; 
+	font-weight: 700;
+	font-size:18px;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+  background: rgb(64,199,129);
+  box-shadow: 0 -3px rgb(53,167,110) inset;
+  transition: 0.1s;
+
+}
+
+.ex-but:hover{
+	background: rgb(53, 167, 110);
+}
+
+
+.navigation, .navigation:active {
+	border:none;
+	outline: 0; 
+	font-weight: 700;
+	font-size:18px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+  transition: 0.1s;
+}
+
+.navigation:hover { background:#DDD;}
+
+
+.exercises {
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 20px;
+	font-weight:bold;
+	text-align:center;
+}
+
+.b2 {
+	-webkit-appearance: none;
+	background-color:#FFF;
+	font-size:1em;
+	border:outset;
+	outline: 0; 
+}
+
+.b2:hover, .b2:active{
+	background-color:#CCC;
+	border:inset;
+	outline: 0; 
+	transition: 0.1s;
+}
+	
+.hint {
+	font-family:Avenir, Verdana, Geneva, sans-serif;
+	margin-top:20px;
+	border:dotted;
+	padding:10px;
+	width:73%;
+	font-size:1em;
+	/*background-color:#E0EEEE;*/
+	background-color:#e4f7f1;
+	line-height:130%;
+}
+
+.transcript {
+	font-family:Arial, Helvetica, sans-serif;
+	margin-top:20px;
+	border:dotted;
+	padding:10px;
+	width:50%;
+	font-size:1em;
+	line-height:130%;
+}
+
+
+.seemore {
+	text-align:center;
+	border-radius: 3px;
+	background-color:#CFC;
+	width:140px;
+	
+}
+
+.seemore img{
+	vertical-align:middle;
+}
+.seemore a {
+	color:#000;
+}
+
+.type{
+	padding-top:0;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.seealso
+{
+	padding: 10px;
+	background-color:#E4EFAA;
+	border-radius: 4px;
+	border-bottom:solid;
+	border-bottom-color:#999;
+}
+
+
+#writing
+{
+	float:left;
+	/*width:88%;*/
+}
+
+#examples-list
+{
+	border-radius:9px;
+	background-color:#f1f1f1;
+	border-style:dotted;
+	float:right;
+	padding:10px;
+	margin-left:17px;
+	width:15%;	
+}
+
+.exam-answer{
+	padding: 0px 40px 0 30px;
+}
+
+
+.column1, .column2, .column3{
+	width:32%;
+	margin:1px;
+	display:inline-block;
+	vertical-align:text-top;
+	text-align:left;
+}
+
+.column-lessons {
+	width:38%;
+	padding-left:1.5em;
+	margin-right:8em;
+	display:inline-block;
+	vertical-align:text-top;
+	text-align:left;
+}
+.column-ex {
+	width:35%;
+	display:inline-block;
+	vertical-align:text-top;
+	text-align:left;
+}
+
+.ex-list{
+	margin-left:25px;
+	display:inline-block;
+}
+
+.column1 p, .column2 p, .column3 p{
+	padding-left:40px;
+}
+
+.biglink{
+	padding-left:20px;
+	font-size:16px;
+	font-weight:bold;	
+}
+
+.biglink a:visited{ color:blue;}
+
+
+.list-outer{
+	padding-left:20px;
+}
+
+.list-inner{
+	padding-left:35px;
+}
+
+
+.result{
+	border:solid;
+	border-radius:8px;
+	width:290px;
+	text-align:center;
+	padding: 15px 10px 15px 10px;
+	margin: 15px 10px 15px 10px;
+	font-size:18px;
+	font-weight:bold;
+}
+
+.examiner {
+	padding-left:5px;
+	margin-top:50px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	background-color:#DDD;
+}
+
+.examiner:before {
+	content:"Examiner: ";
+}
+
+.candidate{
+	/*font-family:Georgia, "Times New Roman", Times, serif;*/
+	color:#777;
+}
+
+.speaking{
+	font-size:1em;
+}
+.candidate:before{
+	content:"Candidate: ";
+}
+
+.phrase{
+	color:#000;
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+.linking{
+	color:#1B89C3;
+	font-style:italic;
+}
+
+.tip{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:19px;
+	font-weight:bold;
+	color:#C33;
+}
+
+.tooltip {
+  color: #000000; 
+  outline: none;
+  cursor: help; 
+  position: relative;
+}
+.tooltip span {
+	display:none;
+	position:absolute;
+}
+.tooltip:hover span {
+  font-family: Calibri, Tahoma, Geneva, sans-serif;
+  background-color:#91E9DE;
+  border-radius: 3px;
+  position: absolute;
+  left: 0.2em;
+  top: 1.5em;
+  z-index: 3;
+  font-weight:normal;
+  margin-left: 0;
+  display: block;
+  width: 250px;
+  padding: 0.5em 0.8em 0.8em 0.8em;
+}
+
+.tooltip:hover em {
+  font-family: Candara, Tahoma, Geneva, sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: block;
+  padding: 0.2em 0 0.6em 0;
+}
+
+.example{
+	display:block;
+	width:70%;
+	//background-color:#FFF8DC;
+	font-style:italic;
+	margin-left:1.3em;
+	margin-bottom:1.2em;
+	padding: 0.2em 0.4em 0.2em 0.4em;
+	border-radius:7px;
+	border-left:4px solid green;
+	color:#2F4F4F;
+}
+
+.photo-ul img{
+	float:none;
+	margin-bottom:20px;
+	transition:1s;
+}
+
+.photo-ul img:hover, .photo-ul img:active{
+	width:70%;
+}
+
+#index-menu a, #index-menu a:link, #index-menu a:visited{
+	text-decoration:underline;
+	font-weight:bold;
+	color:#009ACD;
+}
+
+#index-bars {
+	/*float:right;*/
+	width:520px;
+}
+
+#index-bars div {
+	height:24px;
+	width: 100px;
+	margin: 9px 0;
+	padding: 5px;
+	color: white;
+	background-color: #ED8029;
+	text-align: right;
+	vertical-align:middle;
+	border-radius: 5px;
+}
+
+.theory {
+	padding:0.3em;
+	padding-left:1.3em;
+	background-color:#F5FFFA;
+	border:solid 1px #778899;
+	color:#363636;
+}
+
+/*.theory-heading:hover, .theory img:hover{
+	color:#778899;
+}*/
+
+.theory-heading {
+	padding:0.3em;
+	padding-left:1.3em;
+	background-color:#E0EEE0;
+	border:solid 1px #E0EEE0;
+	font-weight:bold;
+}
+
+.theory .important {
+	color: #2F4F4F;
+}
+
+.tryout {
+	float:right; border-radius:5px; background-color:#FAFAD2; width:110px; padding:15px; font-size:1.1em;
+}
+a.tryout ,  a.tryout:link, a.tryout:visited{
+	color:#2F4F4F;
+	text-decoration:none;
+}
+
+.tryout a:hover{ color:#4682B4;}
+
+img[src="/images/question.png"]:hover{
+	border-radius:15px;
+	box-shadow: 0 0 10px #1C86EE;
+	transition: 0.1s;
+}
+
+.proposed {
+	width: 50%;
+	border-left: 5px solid #FF9612;
+	margin:2em 0 2em 2em;
+	padding:0.1em 1.3em;
+	background: #fefcea;
+}
+
+.text-extract {color:#085b3d; padding-left:2em; font-style:italic; font-family:Georgia, "Times New Roman", Times, serif; font-size:1.1em;}
+.text-extract:before {content:'\201c'; font-size:2em;}
+.text-extract:after{content:'\201d'; font-size:2em;}
+
+.unselectable {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */       
+}
+
+.under-card {
+padding-left:50px; padding-top:10px;}

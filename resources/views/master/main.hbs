@@ -1,44 +1,34 @@
 <!DOCTYPE html>
 <html>
-<!-- http://127.0.0.1:5500/resources/views/master/navedit1.html -->
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link href="../../../public/bootstrap/hamburgers.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:700" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+    <link href="/bootstrap/hamburgers.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" type="text/css" href="style3.css">
-
-  <!-- Bootstrap CSS -->
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
 <body>
-  <!-- {{body}} -->
-   
-  <main id="panel" class="slideout-panel">
-      <h1 class="paddingdown text-center bg">Time Left<span id="div"></span></h1>
+
+   <main id="panel" class="slideout-panel">
+      <h1 class="paddingdown text-center bg" style="font-size:30px;">Time Left : <span id="div"></span></h1>
       <button class="hamburger hamburger--arrowalt" type="button" style="color:white;position:absolute;top:0;left:0">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button> 
     <div style="padding-top:50px;">
-     amet consectetur adipisicing elit. Veritatis atque doloremque similique iste id libero, facilis molestiae esse commodi vitae cupiditate distinctio delectus minima recusandae dicta sit nam, iusto perferendis?</p>
-  </div>
+
+
+      <div class="container">
+     {{{body}}}
+      </div>
+   </div>
   </main>
 
   
-  <nav id="menu" class="sidenav">
+  <nav id="menusir" class="sidenav">
     <div class="child">
         <h1 class="text-center fonter">Questions</h1>
 
@@ -104,20 +94,21 @@
             <button class="a2">10</button>
           </li>
           </li>
-                <a><button type="button" class="btn btn-success" style="width:100%;background: white;color:black">Submit</button></a>  
+                <a><button type="button" id="submitbtn" class="btn btn-success" style="width:100%;background: white;color:black">Submit</button></a>  
       </ul>
     </div>
      
   </nav>
 
- 
+    
 
-<script src="../../../public/bootstrap/slideout.js"></script>
+
+<script src="bootstrap/slideout.js"></script>
 
   <script type="text/javascript">
  var slideout = new Slideout({
     'panel': document.getElementById('panel'),
-    'menu': document.getElementById('menu'),
+    'menu': document.getElementById('menusir'),
     'padding': 350,
     'tolerance': 70
   });
@@ -130,8 +121,9 @@
 
   });
   </script>
-<script>
-   start = function (timeleft) {
+
+  <script type="text/javascript">
+    var start = function (timeleft) {
       var func = () => {
         timeleft = timeleft + Number(document.querySelector("#nitin").value);
       };
@@ -154,20 +146,17 @@
         }
         console.log(timeleft - counter);
         var s = convert(timeleft - counter);
-        var p = ` ${s}`;
+        var p = `${s}`;
         div.innerHTML = p;
       }, 1000)
 
 
-      // setTimeout(function () {
-      //   clearInterval(interval);
-      //   window.location.replace("http://www.google.com");
-      // }, ((timeleft) * 1000) + 500);
+    
 
       return func;
     }
-    start(1000);
   </script>
+<script src="test.js"></script>
 </body>
 
 </html>

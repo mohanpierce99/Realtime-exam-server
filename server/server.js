@@ -10,6 +10,7 @@ const hbs=require('hbs');
 const jwtlib=require('./utility/jwtlib');
 const randomsection = require('./utility/randomsection');
 const pathgen=require('./utility/pathgen.js');
+const resultify=require('./utility/resultify.js');
 let app = express();
 
 const port = process.env.PORT || 3000;
@@ -29,7 +30,8 @@ router({
      jwt,
      jwtlib,
      hbs,
-     randomsection,pathgen
+     randomsection,pathgen,
+     resultify
 });
 
 app.listen(port);

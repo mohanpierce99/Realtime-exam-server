@@ -11,6 +11,7 @@ function router(bundle) {
     let hbs = bundle.hbs;
     let randomsection = bundle.randomsection;
     let pathgen=bundle.pathgen;
+    let resultify=bundle.resultify;
 
     /*--------------------------------------------------------*/
     let studColl = mongolib.init("students");
@@ -28,12 +29,12 @@ function router(bundle) {
     /*-----------------------------------------------------------*/
     
     /*-----------------------------------------------------*/
-    var patharr;
 
   
 
-    app.post('/genlog', (req, res) => {
+    app.post('/home', (req, res) => {
         let rollno = +req.body.id;
+        var patharr;
         studColl.read({
             id: rollno
         }).then((data) => {
@@ -75,7 +76,7 @@ function router(bundle) {
     });
     /*-----------------------------------------------------------*/
 
-    app.get('/inspect', (req, res) => {
+    app.post('/inspect', (req, res) => {
 
         console.log(`${req.cookies} is the users cookie that is stored`);
         res.send("Cookie read");
@@ -88,9 +89,10 @@ function router(bundle) {
     });
     /*-----------------------------------------------------------*/
 
-    app.post('/register', (req, res) => {
+    app.post('/newuser', (req, res) => {
             let user = req.body;
             user.id = +user.id;
+            var patharr;
 
             teacherPref.read({}, false).then((data) => {
                 let mam = data[data.length - 1];
@@ -99,7 +101,7 @@ function router(bundle) {
                 return new Student(mainObj).save()
             }).then((data) => {
                 randomsection(mongoose, 'students', data).then((path) => {
-                    console.log(path);
+                    patharr=path;
                     return jwtlib.generateJWT({
                             id: data.id,
                             path,
@@ -110,7 +112,7 @@ function router(bundle) {
                             return studColl.update({
                                 id: data.id,
                             }, {
-                                is_loggedin: true,
+                                // is_loggedin: true,
                                 token: token
                             })
                         }).then((data) => {
@@ -118,7 +120,7 @@ function router(bundle) {
                             res.cookie("auth-token", data.token, {
                                 maxAge: 2400000
                             });
-                            res.send("Successfully registered and logged in");
+                            pathgen(mongoose,patharr,hbs,res);
                         }).catch((err) => {
                             res.status(404).send("Something went wrong");
                         });
@@ -129,6 +131,24 @@ function router(bundle) {
 
         });
         /*-----------------------------------------------------------*/
+
+        app.post("/verifyresult",function(req,res){
+           let user=req.body;
+           var result=[];
+           resultify(mongolib,user.arr[0]).then((data)=>{
+               result.push(data);
+               return resultify(mongolib,user.arr[1]);
+           }).then((data)=>{
+               result.push(data);
+               return resultify(mongolib,user.arr[2]);
+           }).then((data)=>{
+            result.push(data);
+            return resultify(mongolib,user.arr[3]);
+           }).then((data)=>{
+            res.json(result);
+           }).catch((err)=>console.log(err));
+        });
+
     }
 
     module.exports = router;

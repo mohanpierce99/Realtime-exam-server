@@ -20,7 +20,6 @@ let defaults = {
         S12: false,
         S13: false,
         S14: false,
-        S15: false,
         S16: false,
         S17: false,
         S18: false,
