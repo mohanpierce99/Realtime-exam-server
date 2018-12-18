@@ -9,7 +9,8 @@ function analyze(god, user, parent) {
            acc[data]=(god[data]===parent[data]);
            return acc;
         }
-        if (god[data].includes(parent[data])) {
+        let ci=god[data].map(data=>data.toLowerCase());
+        if (ci.includes(parent[data])) {
             acc[data] = true;
         } else {
             acc[data] = false;

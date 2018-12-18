@@ -18,13 +18,28 @@ function router(bundle) {
     let teacherPref = mongolib.init("teacherpref");
     let defaults = mongolib.defaults;
 
+    app.use(cookieparse());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded());
+
+  
+
     app.use(express.static(__dirname + "./../public", {
         fallthrough: true
     }));
     /*-----------------------------------------------------------*/
-    app.use(cookieparse());
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded());
+    
+    function checkCookie(req,res,next){
+        if(Object.keys(req.cookies).length)
+        { 
+       jwtlib.verifyJWT(req.cookies["auth-token"],'ssn').then((data)=>{
+         pathgen(mongoose,data.path,hbs,res);
+       })
+    }
+    else{
+        next();
+    }
+    }
 
     /*-----------------------------------------------------------*/
     
@@ -32,7 +47,7 @@ function router(bundle) {
 
   
 
-    app.post('/home', (req, res) => {
+    app.post('/home',checkCookie, (req, res) => {
         let rollno = +req.body.id;
         var patharr;
         studColl.read({
@@ -76,12 +91,12 @@ function router(bundle) {
     });
     /*-----------------------------------------------------------*/
 
-    app.post('/inspect', (req, res) => {
+    // app.post('/inspect', (req, res) => {
 
-        console.log(`${req.cookies} is the users cookie that is stored`);
-        res.send("Cookie read");
-    });
-    /*-----------------------------------------------------------*/
+    //     console.log(`${req.cookies} is the users cookie that is stored`);
+    //     res.send("Cookie read");
+    // });
+    // /*-----------------------------------------------------------*/
 
     app.get('/remove', (req, res) => {
         res.clearCookie("auth-token");
@@ -89,7 +104,7 @@ function router(bundle) {
     });
     /*-----------------------------------------------------------*/
 
-    app.post('/newuser', (req, res) => {
+    app.post('/newuser', checkCookie,(req, res) => {
             let user = req.body;
             user.id = +user.id;
             var patharr;
@@ -133,21 +148,23 @@ function router(bundle) {
         /*-----------------------------------------------------------*/
 
         app.post("/verifyresult",function(req,res){
-           let user=req.body;
-           var result=[];
-           resultify(mongolib,user.arr[0]).then((data)=>{
-               result.push(data);
-               return resultify(mongolib,user.arr[1]);
-           }).then((data)=>{
-               result.push(data);
-               return resultify(mongolib,user.arr[2]);
-           }).then((data)=>{
-            result.push(data);
-            return resultify(mongolib,user.arr[3]);
-           }).then((data)=>{
-            res.json(result);
-           }).catch((err)=>console.log(err));
-        });
+            let user=req.body;
+            var result=[];
+            console.log(req.body);
+            resultify(mongolib,user.arr[0]).then((data)=>{
+                result.push(data);
+                return resultify(mongolib,user.arr[1]);
+            }).then((data)=>{
+                result.push(data);
+                return resultify(mongolib,user.arr[2]);
+            }).then((data)=>{
+             result.push(data);
+             return resultify(mongolib,user.arr[3]);
+            }).then((data)=>{
+             result.push(data);
+             res.json(result);
+            }).catch((err)=>console.log(err));
+         });
 
     }
 

@@ -7,6 +7,47 @@
         });
     });
 
+    function allocateAndreturn(){
+        var i = 0;
+        var inputele = document.querySelectorAll("input");
+        var arr = [];
+        var count = 0;
+        var sec;
+        inputele.forEach((ele, i) => {
+
+[{S55:[input,input],
+S66:[]
+]
+[S55:{
+S1Q1:"VALUE"
+}]
+            var correct = ele;
+            // 	console.log(ele);
+            while (ele.id === null || ele.getAttribute("id") !== "exam-text") {
+                ele = ele.parentElement;
+            }
+            if (ele.getAttribute("data-original") !== sec || count === 0) {
+                count = 1;
+                arr.push({
+                    section: ele.getAttribute("data-original")
+                });
+            }
+            sec = ele.getAttribute("data-original");
+            correct.id = (sec + "Q" + count);
+            console.log(arr.length - 1);
+            console.log(correct.value);
+            if (correct.type === "checkbox" || correct.type === "radio") {
+                arr[arr.length - 1][correct.id] = correct.checked;
+            } else if (correct.type === "text") {
+                arr[arr.length - 1][correct.id] = correct.value;
+            }
+            console.log(ele);
+            count++;
+        });
+        return ({
+            arr:arr
+        });
+    }
     function answersselected() {
         var i = 0;
         var inputele = document.querySelectorAll("input");
@@ -64,5 +105,9 @@
         });
 
         return http;
+    }
+
+    function sel(data){
+        return document.querySelector(data);
     }
 })();

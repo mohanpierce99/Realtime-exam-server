@@ -97,7 +97,7 @@ function pathgen(mongoose,paths,hbs,res){
         var regex=/\d+/g;
             var usr=data.match(regex);
             let final;
-            for(let i=0;i<2;i++){
+            for(let i=0;i<usr.length;i++){
     if(usr[i].length===1){usr[i]="0"+usr[i]};
                 if(usr[i][1]==0){
                     data=data.replace(usr[i],"10");
