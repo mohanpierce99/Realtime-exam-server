@@ -1,84 +1,53 @@
 function router(bundle) {
     let app = bundle.app;
-    let {
-        mongoose
-    } = bundle.mongoose;
+    let cookieparse = bundle.cookie;
+    let {mongoose} = bundle.mongoose;
     let Student = bundle.Student;
     let express = bundle.express;
     let bodyParser = bundle.bodyParser;
+    let mongolib = bundle.mongolib(mongoose);
+    let jwt = bundle.jwt;
+    let jwtlib = bundle.jwtlib(jwt);
+    let hbs = bundle.hbs;
+    let randomsection = bundle.randomsection;
+    let pathgen=bundle.pathgen;
+    let resultify=bundle.resultify;
+
+    /*--------------------------------------------------------*/
+    let studColl = mongolib.init("students");
+    let teacherPref = mongolib.init("teacherpref");
+    let defaults = mongolib.defaults;
+
+    app.use(cookieparse());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded());
+
+  
 
     app.use(express.static(__dirname + "./../public", {
         fallthrough: true
     }));
-    app.use(bodyParser.json());
-    app.get("/", (req, res) => {
-        res.send('../public/index.html');
-    })
-
-    let defaults = {
-        login_count: 0,
-        is_loggedin: false,
-        sections: {
-            S1: false,
-            S2: false,
-            S3: false,
-            S4: false,
-            S5: false,
-            S6: false,
-            S7: false,
-            S8: false,
-            S9: false,
-            S10: false,
-            S11: false,
-            S12: false,
-            S13: false,
-            S14: false,
-            S15: false,
-            S16: false,
-            S17: false,
-            S18: false,
-            S19: false,
-            S20: false,
-            S21: false,
-            S22: false,
-            S23: false,
-            S24: false,
-            S25: false,
-            S26: false,
-            S27: false,
-            S28: false,
-            S29: false,
-            S30: false,
-            S31: false,
-            S32: false,
-            S33: false,
-            S34: false,
-            S35: false,
-            S36: false,
-            S37: false,
-            S38: false,
-            S39: false,
-            S40: false,
-            S41: false,
-            S42: false,
-            S43: false,
-            S44: false,
-            S45: false,
-            S46: false,
-            S47: false,
-            S48: false,
-            S49: false,
-            S50: false,
-            S51: false,
-            S52: false,
-            S53: false,
-            S54: false,
-            S55: false,
-            S56: false,
-        }
-
+    /*-----------------------------------------------------------*/
+    
+    function checkCookie(req,res,next){
+        if(Object.keys(req.cookies).length)
+        { 
+       jwtlib.verifyJWT(req.cookies["auth-token"],'ssn').then((data)=>{
+         pathgen(mongoose,data.path,hbs,res);
+       })
+    }
+    else{
+        next();
+    }
     }
 
+    /*-----------------------------------------------------------*/
+    
+    /*-----------------------------------------------------*/
+
+  
+
+<<<<<<< HEAD
     app.post('/login', (req,res)=>{
         let rollno = +req.body.id;
             Student.findOneAndUpdate(
@@ -113,25 +82,127 @@ function router(bundle) {
                     }).catch((err) => {
                         console.log(err);
                         res.status(400).send(err);
+=======
+    app.post('/home',checkCookie, (req, res) => {
+        let rollno = +req.body.id;
+        var patharr;
+        studColl.read({
+            id: rollno
+        }).then((data) => {
+            if (!data.length) {
+                res.status(401).send("Please Signup or enter Correct Register No");
+                return;
+            } else if (data[0].is_loggedin) {
+                res.status(401).send("User already in session");
+                return;
+            }
+            randomsection(mongoose, 'students', data[0]).then((path) => {
+                    patharr=path;
+                    console.log(path);
+                    return jwtlib.generateJWT({
+                        id: data[0].id,
+                        path,
+
+                    }, 'ssn');
+
+                })
+                .then((token) => {
+                    console.log(token);
+                    return studColl.update({
+                        id: rollno
+                    }, {
+                        // is_loggedin: true,
+                        token
+>>>>>>> master
                     })
-                }).catch((err) => log(err));
-            }
-            else{
-                res.send("roll no already exist");
-            }
-        })
-        .catch((err)=>{
-            console.log("couldnt call the count method in db");
+                }).then((data) => {
+
+                    res.cookie("auth-token", data.token, {
+                        maxAge: 2400000
+                    });
+                    pathgen(mongoose,patharr,hbs,res);
+                }).catch((err) => {
+                    res.status(404).send("Something went wrong");
+                });
         });
-
-        
     });
-    
+    /*-----------------------------------------------------------*/
 
-}
+    // app.post('/inspect', (req, res) => {
 
-module.exports = router;
+    //     console.log(`${req.cookies} is the users cookie that is stored`);
+    //     res.send("Cookie read");
+    // });
+    // /*-----------------------------------------------------------*/
 
-function log(d) {
-    console.log(d);
-}
+    app.get('/remove', (req, res) => {
+        res.clearCookie("auth-token");
+        res.send("Cookie cleared");
+    });
+    /*-----------------------------------------------------------*/
+
+    app.post('/newuser', checkCookie,(req, res) => {
+            let user = req.body;
+            user.id = +user.id;
+            var patharr;
+
+            teacherPref.read({}, false).then((data) => {
+                let mam = data[data.length - 1];
+                delete mam._id;
+                let mainObj = Object.assign(user, mam, defaults);
+                return new Student(mainObj).save()
+            }).then((data) => {
+                randomsection(mongoose, 'students', data).then((path) => {
+                    patharr=path;
+                    return jwtlib.generateJWT({
+                            id: data.id,
+                            path,
+
+                        }, 'ssn')
+                        .then((token) => {
+                            console.log(token);
+                            return studColl.update({
+                                id: data.id,
+                            }, {
+                                // is_loggedin: true,
+                                token: token
+                            })
+                        }).then((data) => {
+
+                            res.cookie("auth-token", data.token, {
+                                maxAge: 2400000
+                            });
+                            pathgen(mongoose,patharr,hbs,res);
+                        }).catch((err) => {
+                            res.status(404).send("Something went wrong");
+                        });
+
+
+                });
+            });
+
+        });
+        /*-----------------------------------------------------------*/
+
+        app.post("/verifyresult",function(req,res){
+            let user=req.body;
+            var result=[];
+            console.log(req.body);
+            resultify(mongolib,user.arr[0]).then((data)=>{
+                result.push(data);
+                return resultify(mongolib,user.arr[1]);
+            }).then((data)=>{
+                result.push(data);
+                return resultify(mongolib,user.arr[2]);
+            }).then((data)=>{
+             result.push(data);
+             return resultify(mongolib,user.arr[3]);
+            }).then((data)=>{
+             result.push(data);
+             res.json(result);
+            }).catch((err)=>console.log(err));
+         });
+
+    }
+
+    module.exports = router;

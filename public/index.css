@@ -95,6 +95,9 @@ flex:1;
     -ms-transition:all 0.3s;
     -o-transition:all 0.3s;
 }
+.bgblue{
+    background: #288eda;
+}
 .bg:hover{
     background: white;
     color: black;
@@ -103,7 +106,4 @@ flex:1;
     .g-font-30--lg{
         font-size: 1.5rem!important;
     }
-}
-.padded{
-    padding-bottom: 28%;
 }

@@ -17,45 +17,16 @@
         signupportion.classList.remove("fadeOut","d-none");
         signupportion.classList.add("fadeIn");
     });
-
-    sel("#signupdiv").addEventListener("submit",(e)=>{
-        e.preventDefault();
-        register(e.target.elements.name,e.target.elements.rollno);
-    });
-
-    sel("#logindiv").addEventListener("submit",(e)=>{
-        e.preventDefault();
-        loginUp(e.target.elements.enrollno);
-    })
-
-    function loginUp(roll){
-        let enroll={
-            id:roll.value
-        };
-        console.log(enroll);
-        httpreq("/login",JSON.stringify(enroll)).then((data)=>{
-            console.log(data);
-        }).catch(err=>console.log(err));
-    }
-
-     function register(name,rollno){
-         let  usr={
-            name:name.value,
-            id:rollno.value
-         }
-         httpreq("/register",JSON.stringify(usr)).then((data)=>{
-             console.log(data);
-         }).catch(err=>console.log(err));
-     }
-
     function sel(data) {
         return document.querySelector(data);
     }
+
 
     function httpreq(route,json){
         var http = new Promise((res,rej)=>{
             var xhttp = new XMLHttpRequest();
             xhttp.open('POST',route,true);
+            xhttp.setRequestHeader('Cookie',document.cookie);
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                       res(this.response);
@@ -73,4 +44,5 @@
 
         return http;
     }
+
 })();

@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 const jwt = require('jsonwebtoken');
 
 const salt = 'ssn';
 
+=======
+var uniqueValidator = require('mongoose-unique-validator');
+>>>>>>> master
 const studentSchema = new mongoose.Schema({
 	//student
 	id:{
@@ -11,6 +15,13 @@ const studentSchema = new mongoose.Schema({
 		required: true,
 		trim: true,
 		unique: true
+<<<<<<< HEAD
+=======
+		},
+		marks:{
+			type:Array,
+			required:false,
+>>>>>>> master
 		},
 	name:{
        	type:String,
@@ -49,6 +60,7 @@ const studentSchema = new mongoose.Schema({
 	sections:{
      	type:Object,
      	required:true
+<<<<<<< HEAD
      	},
  	tokens:[{tkn:{
 			type: String,
@@ -81,8 +93,19 @@ studentSchema.methods.removeToken = function (token) {
 		}); }
 
 
+=======
+		 },
+		 token:{
+			 type:String,
+			 required:false,
+			 default:""
+		 }
+});
+studentSchema.plugin(uniqueValidator);
+>>>>>>> master
 
 
 const Student = mongoose.model('students' , studentSchema);
 
 module.exports=Student;
+

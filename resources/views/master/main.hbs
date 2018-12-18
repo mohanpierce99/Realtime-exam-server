@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+    <link href="/bootstrap/hamburgers.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style3.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+   <main id="panel" class="slideout-panel">
+      <h1 class="paddingdown text-center bg" style="font-size:30px;">Time Left : <span id="div"></span></h1>
+      <button class="hamburger hamburger--arrowalt" type="button" style="color:white;position:absolute;top:0;left:0">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button> 
+    <div style="padding-top:50px;">
+
+
+      <div class="container">
+     {{{body}}}
+      </div>
+   </div>
+  </main>
+
+  
+  <nav id="menusir" class="sidenav">
+    <div class="child">
+        <h1 class="text-center fonter">Questions</h1>
+
+        <ul style="list-style-type:none; margin:0; padding:0">
+          <li>
+            <a class="ink">Section 1</a>
+            <button id="s1q1" class="a2">1</button>
+            <button id="s1q2" class="a2">2</button>
+            <button id="s1q3" class="a2">3</button>
+            <button id="s1q4" class="a2">4</button>
+            <button id="s1q5" class="a2">5</button>
+          </li>
+          <li>
+            <button id="s1q6" class="a2">6</button>
+            <button id="s1q7" class="a2">7</button>
+            <button id="s1q8" class="a2">8</button>
+            <button id="s1q9" class="a2">9</button>
+            <button id="s1q10" class="a2">10</button>
+          </li>
+          <li>
+            <a class="ink">Section 2</a>
+            <button id="s2q1" class="a2">1</button>
+            <button id="s2q2" class="a2">2</button>
+            <button id="s2q3" class="a2">3</button>
+            <button id="s2q4" class="a2">4</button>
+            <button id="s2q5" class="a2">5</button>
+          </li>
+          <li>
+            <button id="s2q6" class="a2">6</button>
+            <button id="s2q7" class="a2">7</button>
+            <button id="s2q8" class="a2">8</button>
+            <button id="s2q9" class="a2">9</button>
+            <button id="s2q10" class="a2">10</button>
+          </li>
+          <li>
+            <a class="ink">Section 3</a>
+            <button id="s3q1" class="a2">1</button>
+            <button id="s3q2" class="a2">2</button>
+            <button id="s3q3" class="a2">3</button>
+            <button id="s3q4" class="a2">4</button>
+            <button id="s3q5" class="a2">5</button>
+          </li>
+          <li>
+            <button id="s3q6" class="a2">6</button>
+            <button id="s3q7" class="a2">7</button>
+            <button id="s3q8" class="a2">8</button>
+            <button id="s3q9" class="a2">9</button>
+            <button id="s3q10" class="a2">10</button>
+          </li>
+          <li>
+            <a class="ink">Section 4</a>
+            <button id="s4q1" class="a2">1</button>
+            <button id="s4q2" class="a2">2</button>
+            <button id="s4q3" class="a2">3</button>
+            <button id="s4q4" class="a2">4</button>
+            <button id="s4q5" class="a2">5</button>
+          </li>
+          <li>
+            <button id="s4q6" class="a2">6</button>
+            <button id="s4q7" class="a2">7</button>
+            <button id="s4q8" class="a2">8</button>
+            <button id="s4q9" class="a2">9</button>
+            <button id="s4q10" class="a2">10</button>
+          </li>
+          </li>
+                <a><button type="button" id="submitbtn" class="btn btn-success" style="width:100%;background: white;color:black">Submit</button></a>  
+      </ul>
+    </div>
+     
+  </nav>
+
+    
+
+
+<script src="bootstrap/slideout.js"></script>
+
+  <script type="text/javascript">
+ var slideout = new Slideout({
+    'panel': document.getElementById('panel'),
+    'menu': document.getElementById('menusir'),
+    'padding': 350,
+    'tolerance': 70
+  });
+
+  // Toggle button
+  document.querySelector('.hamburger').addEventListener('click', function() {
+    document.querySelector(".slideout-panel").classList.toggle("scrollfix");
+    document.querySelector('.hamburger').classList.toggle("is-active");
+    slideout.toggle();
+
+  });
+  </script>
+
+  <script type="text/javascript">
+    var start = function (timeleft) {
+      var func = () => {
+        timeleft = timeleft + Number(document.querySelector("#nitin").value);
+      };
+      var counter = 0;
+      var div = document.querySelector('#div')
+
+      function convert(s) {
+        // console.log(s);
+        var min = Math.floor(s / 60);
+        var char = (min < 10) ? '0' + min.toString() : min.toString();
+        var sec = Math.floor(s % 60);
+        var sec1 = (sec < 10) ? '0' + sec.toString() : sec.toString();
+        return char + ':' + sec1;
+      }
+
+      var interval = setInterval(function () {
+        counter++;
+        if ((timeleft - counter) === 0) {
+          window.location.replace("http://www.google.com");
+        }
+        console.log(timeleft - counter);
+        var s = convert(timeleft - counter);
+        var p = `${s}`;
+        div.innerHTML = p;
+      }, 1000)
+
+
+    
+
+      return func;
+    }
+  </script>
+<script src="test.js"></script>
+</body>
+
+</html>
