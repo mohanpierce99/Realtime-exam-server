@@ -1,7 +1,9 @@
 function router(bundle) {
     let app = bundle.app;
     let cookieparse = bundle.cookie;
-    let {mongoose} = bundle.mongoose;
+    let {
+        mongoose
+    } = bundle.mongoose;
     let Student = bundle.Student;
     let express = bundle.express;
     let bodyParser = bundle.bodyParser;
@@ -10,8 +12,8 @@ function router(bundle) {
     let jwtlib = bundle.jwtlib(jwt);
     let hbs = bundle.hbs;
     let randomsection = bundle.randomsection;
-    let pathgen=bundle.pathgen;
-    let resultify=bundle.resultify;
+    let pathgen = bundle.pathgen;
+    let resultify = bundle.resultify;
 
     /*--------------------------------------------------------*/
     let studColl = mongolib.init("students");
@@ -22,32 +24,40 @@ function router(bundle) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded());
 
-  
+
 
     app.use(express.static(__dirname + "./../public", {
         fallthrough: true
     }));
     /*-----------------------------------------------------------*/
-    
-    function checkCookie(req,res,next){
-        if(Object.keys(req.cookies).length)
-        { 
-       jwtlib.verifyJWT(req.cookies["auth-token"],'ssn').then((data)=>{
-         pathgen(mongoose,data.path,hbs,res);
-       })
+
+    function checkCookie(req, res, next) {
+        if (Object.keys(req.cookies)[0].length) {
+            jwtlib.verifyJWT(req.cookies["auth-token"], 'ssn').then((data) => {
+                pathgen(mongoose, data.path, hbs, res);
+            })
+        } else {
+            next();
+        }
     }
-    else{
+
+    function decode(req, res, next) {
+        try {
+            req.decodedStuff = jwtlib.verifySync(req.cookies["auth-token"], 'ssn');
+        } catch (err) {
+            res.status(401).send("Not Authorised");
+        }
         next();
-    }
+
     }
 
     /*-----------------------------------------------------------*/
-    
+
     /*-----------------------------------------------------*/
 
-  
 
-    app.post('/home',checkCookie, (req, res) => {
+
+    app.post('/home', checkCookie, (req, res) => {
         let rollno = +req.body.id;
         var patharr;
         studColl.read({
@@ -61,7 +71,7 @@ function router(bundle) {
                 return;
             }
             randomsection(mongoose, 'students', data[0]).then((path) => {
-                    patharr=path;
+                    patharr = path;
                     console.log(path);
                     return jwtlib.generateJWT({
                         id: data[0].id,
@@ -83,7 +93,7 @@ function router(bundle) {
                     res.cookie("auth-token", data.token, {
                         maxAge: 2400000
                     });
-                    pathgen(mongoose,patharr,hbs,res);
+                    pathgen(mongoose, patharr, hbs, res);
                 }).catch((err) => {
                     res.status(404).send("Something went wrong");
                 });
@@ -104,68 +114,76 @@ function router(bundle) {
     });
     /*-----------------------------------------------------------*/
 
-    app.post('/newuser', checkCookie,(req, res) => {
-            let user = req.body;
-            user.id = +user.id;
-            var patharr;
+    app.post('/newuser', checkCookie, (req, res) => {
+        let user = req.body;
+        user.id = +user.id;
+        var patharr;
 
-            teacherPref.read({}, false).then((data) => {
-                let mam = data[data.length - 1];
-                delete mam._id;
-                let mainObj = Object.assign(user, mam, defaults);
-                return new Student(mainObj).save()
-            }).then((data) => {
-                randomsection(mongoose, 'students', data).then((path) => {
-                    patharr=path;
-                    return jwtlib.generateJWT({
+        teacherPref.read({}, false).then((data) => {
+            let mam = data[data.length - 1];
+            delete mam._id;
+            let mainObj = Object.assign(user, mam, defaults);
+            return new Student(mainObj).save()
+        }).then((data) => {
+            randomsection(mongoose, 'students', data).then((path) => {
+                patharr = path;
+                return jwtlib.generateJWT({
+                        id: data.id,
+                        path,
+
+                    }, 'ssn')
+                    .then((token) => {
+                        console.log(token);
+                        return studColl.update({
                             id: data.id,
-                            path,
+                        }, {
+                            // is_loggedin: true,
+                            token: token
+                        })
+                    }).then((data) => {
 
-                        }, 'ssn')
-                        .then((token) => {
-                            console.log(token);
-                            return studColl.update({
-                                id: data.id,
-                            }, {
-                                // is_loggedin: true,
-                                token: token
-                            })
-                        }).then((data) => {
-
-                            res.cookie("auth-token", data.token, {
-                                maxAge: 2400000
-                            });
-                            pathgen(mongoose,patharr,hbs,res);
-                        }).catch((err) => {
-                            res.status(404).send("Something went wrong");
+                        res.cookie("auth-token", data.token, {
+                            maxAge: 2400000
                         });
+                        pathgen(mongoose, patharr, hbs, res);
+                    }).catch((err) => {
+                        res.status(404).send("Something went wrong");
+                    });
 
 
-                });
             });
+        });
+
+    });
+    /*-----------------------------------------------------------*/
+
+    app.post("/verifyresult", decode, function (req, res) {
+        let user = req.body;
+        let userid = req.decodedStuff.id;
+        var result = [];
+        console.log(req.body);
+        resultify.parseResult(mongolib, user.arr[0], userid).then((data) => {
+            result.push(data);
+            return resultify.parseResult(mongolib, user.arr[1], userid);
+        }).then((data) => {
+            result.push(data);
+            return resultify.parseResult(mongolib, user.arr[2], userid);
+        }).then((data) => {
+            result.push(data);
+            return resultify.parseResult(mongolib, user.arr[3], userid);
+        }).then((data) => {
+            result.push(data);
+            resultify.finalDuty(result, userid, mongolib).then((data) => {
+                result.push({
+                    marks: data
+                });
+                res.json(result);
+            }).catch((err) => res.status(400).send("Something went wrong"));
+
 
         });
-        /*-----------------------------------------------------------*/
+    });
+}
 
-        app.post("/verifyresult",function(req,res){
-            let user=req.body;
-            var result=[];
-            console.log(req.body);
-            resultify(mongolib,user.arr[0]).then((data)=>{
-                result.push(data);
-                return resultify(mongolib,user.arr[1]);
-            }).then((data)=>{
-                result.push(data);
-                return resultify(mongolib,user.arr[2]);
-            }).then((data)=>{
-             result.push(data);
-             return resultify(mongolib,user.arr[3]);
-            }).then((data)=>{
-             result.push(data);
-             res.json(result);
-            }).catch((err)=>console.log(err));
-         });
 
-    }
-
-    module.exports = router;
+module.exports = router;

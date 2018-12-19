@@ -89,7 +89,7 @@ function pathgen(mongoose,paths,hbs,res){
     let fs=require('fs');
     let pathist=require('path');
     let mansec=lib.init("sections");
-    paths=paths||[".././../resources/views/1.hbs",".././../resources/views/2.hbs",".././../resources/views/3.hbs",".././../resources/views/4.hbs"];
+
     let n=0;
 
 

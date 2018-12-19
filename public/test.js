@@ -1,26 +1,69 @@
 (function () {
-
+    var socket = io();
+  
+     var seg=allocateAndreturn();
     document.querySelector("#submitbtn").addEventListener("click", (e) => {
-        var answers=JSON.stringify(answersselected());
+        var answers=JSON.stringify(answersselected(seg));
         httpreq('/verifyresult', answers).then((data) => {
             alert(data);
         });
     });
 
-    function allocateAndreturn(){
+    sel("#ro").addEventListener("click",function(){
+        console.log(socket);
+        socket.emit("sendTime",+sel('#lolz').value);
+    });
+    sel("#ro2").addEventListener("click",function(){
+        console.log(socket);
+        socket.emit("append",+sel('#lolz2').value);
+    });
+    // function allocateAndreturn(){
+    //     var i = 0;
+    //     var inputele = document.querySelectorAll("input");
+    //     var arr = [];
+    //     var count = 0;
+    //     var sec;
+    //     inputele.forEach((ele, i) => {
+
+    //         var correct = ele;
+    //         while (ele.id === null || ele.getAttribute("id") !== "exam-text") {
+    //             ele = ele.parentElement;
+    //         }
+    //         if (ele.getAttribute("data-original") !== sec || count === 0) {
+    //             count = 1;
+    //             arr.push({
+    //                 section: ele.getAttribute("data-original")
+    //             });
+    //         }
+    //         sec = ele.getAttribute("data-original");
+    //         correct.id = (sec + "Q" + count);
+    //         console.log(arr.length - 1);
+    //         console.log(correct.value);
+    //         if (correct.type === "checkbox" || correct.type === "radio") {
+    //             arr[arr.length - 1][correct.id] = correct.checked;
+    //         } else if (correct.type === "text") {
+    //             arr[arr.length - 1][correct.id] = correct.value;
+    //         }
+    //         console.log(ele);
+    //         count++;
+    //     });
+    //     return ({
+    //         arr:arr
+    //     });
+    // }
+//["S55":[]
+ // [{section:"S55","s55":value}]
+
+    function allocateAndreturn() {
         var i = 0;
         var inputele = document.querySelectorAll("input");
         var arr = [];
         var count = 0;
         var sec;
+        var sec1;
         inputele.forEach((ele, i) => {
 
-[{S55:[input,input],
-S66:[]
-]
-[S55:{
-S1Q1:"VALUE"
-}]
+
             var correct = ele;
             // 	console.log(ele);
             while (ele.id === null || ele.getAttribute("id") !== "exam-text") {
@@ -28,61 +71,34 @@ S1Q1:"VALUE"
             }
             if (ele.getAttribute("data-original") !== sec || count === 0) {
                 count = 1;
-                arr.push({
-                    section: ele.getAttribute("data-original")
-                });
+                sec1 = ele.getAttribute("data-original")
+				var temp = {};
+				temp[sec1] = [];
+                arr.push(temp);
             }
             sec = ele.getAttribute("data-original");
-            correct.id = (sec + "Q" + count);
-            console.log(arr.length - 1);
-            console.log(correct.value);
-            if (correct.type === "checkbox" || correct.type === "radio") {
-                arr[arr.length - 1][correct.id] = correct.checked;
-            } else if (correct.type === "text") {
-                arr[arr.length - 1][correct.id] = correct.value;
-            }
-            console.log(ele);
+            //correct.id = (sec + "Q" + count);
+            //console.log(arr.length - 1);
+            //console.log(correct.value);
+				console.log(arr[arr.length - 1])
+                arr[arr.length - 1][sec1].push(correct);
+            
+            //console.log(ele);
+            
+
             count++;
         });
-        return ({
-            arr:arr
-        });
+        return (arr);
     }
-    function answersselected() {
-        var i = 0;
-        var inputele = document.querySelectorAll("input");
-        var arr = [];
-        var count = 0;
-        var sec;
-        inputele.forEach((ele, i) => {
 
-
-            var correct = ele;
-            // 	console.log(ele);
-            while (ele.id === null || ele.getAttribute("id") !== "exam-text") {
-                ele = ele.parentElement;
+    function answersselected(arr){
+        arr.map((data)=>{var root=Object.keys(data)[0];
+            var temp={section:root};
+            for(stuff of data[root]){
+               temp[stuff.id]=stuff.value;
             }
-            if (ele.getAttribute("data-original") !== sec || count === 0) {
-                count = 1;
-                arr.push({
-                    section: ele.getAttribute("data-original")
-                });
-            }
-            sec = ele.getAttribute("data-original");
-            correct.id = (sec + "Q" + count);
-            console.log(arr.length - 1);
-            console.log(correct.value);
-            if (correct.type === "checkbox" || correct.type === "radio") {
-                arr[arr.length - 1][correct.id] = correct.checked;
-            } else if (correct.type === "text") {
-                arr[arr.length - 1][correct.id] = correct.value;
-            }
-            console.log(ele);
-            count++;
-        });
-        return ({
-            arr:arr
-        });
+                         return temp;
+                        });
     }
 
     function httpreq(route, json) {

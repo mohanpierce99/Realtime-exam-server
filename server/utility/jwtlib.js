@@ -21,6 +21,9 @@ function JWTlib(jwt){
                         }
                     });
                 }
+                function  verifySync(token,pass){
+                    return jwt.verify(token,pass);
+                }
     
                 function revive( token) {
                     return new Promise((res, rej) => {
@@ -34,7 +37,7 @@ function JWTlib(jwt){
     
 
                 return {
-                    generateJWT,verifyJWT,revive
+                    generateJWT,verifyJWT,revive,verifySync
                 }
 }
 module.exports=JWTlib;
