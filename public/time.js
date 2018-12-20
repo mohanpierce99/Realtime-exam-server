@@ -10,10 +10,21 @@ console.log(seg);
         console.log(answersselected(seg));
         var answers=JSON.stringify({arr:answersselected(seg)});
         console.log(answers);
-        httpreq('/verifyresult', answers).then((data) => {
-            alert(data);
+        httpreq('/verifyresult', answers).then((obj) => {
+            data=JSON.parse(obj);
+           data.forEach((obj,i)=>{
+               if(i==data.length-1){
+                   alert(obj["marks"]);
+                   return ;
+               }
+                   Object.keys(obj).forEach((data)=>{
+                    if(!obj[data]){   
+                    sel("#"+data).style.border="3px solid red";
+                    }
+           });
         });
-    });
+    })
+});
     var start = function (timeleft) {
         var func = (addTime) => {
             timeleft = timeleft +addTime;

@@ -32,7 +32,8 @@ function router(bundle) {
     /*-----------------------------------------------------------*/
 
     function checkCookie(req, res, next) {
-        if (Object.keys(req.cookies)[0].length) {
+        console.log("Hit");
+        if ("auth-token" in (req.cookies)) {
             jwtlib.verifyJWT(req.cookies["auth-token"], 'ssn').then((data) => {
                 pathgen(mongoose, data.path, hbs, res);
             })
@@ -123,7 +124,7 @@ function router(bundle) {
             let mam = data[data.length - 1];
             delete mam._id;
             let mainObj = Object.assign(user, mam, defaults);
-            return new Student(mainObj).save()
+            return new Student(mainObj).save().catch((err)=>res("Already exists"));
         }).then((data) => {
             randomsection(mongoose, 'students', data).then((path) => {
                 patharr = path;
