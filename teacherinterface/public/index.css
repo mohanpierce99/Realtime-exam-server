@@ -1,0 +1,109 @@
+
+@font-face{
+    font-family: Poppins;
+    src:url("./fonts/Poppins-Bold.ttf");
+}
+
+@font-face{
+    font-family: Roboto-light;
+    src:url("./fonts/Roboto-Light.ttf");
+}
+
+@font-face{
+    font-family: Roboto-medium;
+    src:url("./fonts/Roboto-Medium.ttf");
+}
+
+.font-bold{
+    font-family: "Poppins";
+    font-size: 25px;
+    text-transform: capitalize;
+    color: black;
+}
+.font-medium{
+    font-family: "Roboto-medium";
+    font-size: 1.2rem;
+}
+.font-light{
+    font-family: "Roboto-light";
+    font-size: 1.8rem;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body,html{
+    height: 100%;
+    background: #00d2ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+.card{
+    background: white;
+    box-shadow: 0px 0px 16px 4px rgba(0,0,0,0.3);
+    border-radius: 1rem;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 25px;
+    margin-top:8px;
+    padding:8px;
+    overflow-wrap: break-word;
+}
+
+.form-group{
+    padding: 1rem;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
+.flex>div{
+flex:1;
+}
+.extend{
+    width: 100%;
+}
+.remove-shadow{
+    box-shadow: none;
+}
+
+.white{
+    color: white;
+}
+
+.bg{
+    background: #288eda;
+    color: white;
+    transition:all 0.3s;
+    aborder-radius:0 !important ;
+    -webkit-border-radius:0 !important ;
+    -moz-border-radius:0 !important ;
+    -ms-border-radius:0 !important ;
+    -o-border-radius:0 !important ;
+    -webkit-transition:all 0.3s;
+    -moz-transition:all 0.3s;
+    -ms-transition:all 0.3s;
+    -o-transition:all 0.3s;
+}
+.bgblue{
+    background: #288eda;
+}
+.bg:hover{
+    background: white;
+    color: black;
+}
+@media(max-width:990px){
+    .g-font-30--lg{
+        font-size: 1.5rem!important;
+    }
+}
