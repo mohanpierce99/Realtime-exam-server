@@ -1,5 +1,6 @@
+var socket = io();
+
 (function () {
-    var socket = io();
   
      var seg=allocateAndreturn();
     document.querySelector("#submitbtn").addEventListener("click", (e) => {
@@ -13,6 +14,7 @@
         console.log(socket);
         socket.emit("sendTime",+sel('#lolz').value);
     });
+
     sel("#ro2").addEventListener("click",function(){
         console.log(socket);
         socket.emit("append",+sel('#lolz2').value);

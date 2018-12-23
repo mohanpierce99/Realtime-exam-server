@@ -83,7 +83,8 @@
 //         module.exports=pathgen;
 
 
-function pathgen(mongoose,paths,hbs,res){
+function pathgen(mongoose,paths,hbs,res,rollno,namer){
+    console.log(rollno);
     let root=mongoose.connection.collection("sections");
     let lib=require('../utility/mongolib.js')(mongoose);
     let fs=require('fs');
@@ -157,7 +158,9 @@ function pathgen(mongoose,paths,hbs,res){
      
          function append(data){
              res.render(pathist.join(__dirname+"../../../"+"/resources/views/master/main.hbs"), {
-                 body: data
+                 body: data,
+                 roll:rollno,
+                 namer:namer
              });
      
          }
