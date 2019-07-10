@@ -20,9 +20,7 @@
       </span>
     </button>
     <div style="padding-top:50px;">
-
-
-      <div class="container">
+      <div class="container" data-user={{roll}} data-name={{namer}}>
         {{{body}}}
       </div>
     </div>
@@ -95,7 +93,28 @@
           <button id="s4q10" class="a2">10</button>
         </li>
         </li>
-        <a><button type="button" id="submitbtn" class="btn btn-success" style="width:100%;background: white;color:black">Submit</button></a>
+        <a><button type="button" id="submitbtn" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="width:100%;background: white;color:black">Submit</button>
+       <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">The marks you scored</h4>
+      </div>
+      <div class="modal-body">
+        <p>hi</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div> </a>
+        
+
       </ul>
     </div>
 
@@ -124,6 +143,8 @@
   </script>
 
   <script type="text/javascript" src="time.js"></script>
+
+  <footer id="end"><p>Your marks will shown here too at the end</p></footer>
 </body>
 
 </html>

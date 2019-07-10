@@ -25,16 +25,18 @@ function router(bundle) {
     app.use(bodyParser.urlencoded());
 
 
-
     app.use(express.static(__dirname + "./../public", {
         fallthrough: true
     }));
+
+    app.use('/teachers',express.static(__dirname+"./../teacherinterface/public/"));
     /*-----------------------------------------------------------*/
 
     function checkCookie(req, res, next) {
-        if (Object.keys(req.cookies)[0].length) {
+        console.log("Hit");
+        if ("auth-token" in (req.cookies)) {
             jwtlib.verifyJWT(req.cookies["auth-token"], 'ssn').then((data) => {
-                pathgen(mongoose, data.path, hbs, res);
+                pathgen(mongoose, data.path, hbs, res,data.id,data.name);
             })
         } else {
             next();
@@ -59,6 +61,7 @@ function router(bundle) {
 
     app.post('/home', checkCookie, (req, res) => {
         let rollno = +req.body.id;
+        let name;
         var patharr;
         studColl.read({
             id: rollno
@@ -70,11 +73,14 @@ function router(bundle) {
                 res.status(401).send("User already in session");
                 return;
             }
+            name=data[0].name;
             randomsection(mongoose, 'students', data[0]).then((path) => {
+               
                     patharr = path;
                     console.log(path);
                     return jwtlib.generateJWT({
                         id: data[0].id,
+                        name:data[0].name,
                         path,
 
                     }, 'ssn');
@@ -93,7 +99,7 @@ function router(bundle) {
                     res.cookie("auth-token", data.token, {
                         maxAge: 2400000
                     });
-                    pathgen(mongoose, patharr, hbs, res);
+                    pathgen(mongoose, patharr, hbs, res,rollno,name);
                 }).catch((err) => {
                     res.status(404).send("Something went wrong");
                 });
@@ -116,6 +122,7 @@ function router(bundle) {
 
     app.post('/newuser', checkCookie, (req, res) => {
         let user = req.body;
+        let name;
         user.id = +user.id;
         var patharr;
 
@@ -123,13 +130,15 @@ function router(bundle) {
             let mam = data[data.length - 1];
             delete mam._id;
             let mainObj = Object.assign(user, mam, defaults);
-            return new Student(mainObj).save()
+            return new Student(mainObj).save().catch((err)=>res("Already exists"));
         }).then((data) => {
+            name=data.name;
             randomsection(mongoose, 'students', data).then((path) => {
                 patharr = path;
                 return jwtlib.generateJWT({
                         id: data.id,
                         path,
+                        name:data.name
 
                     }, 'ssn')
                     .then((token) => {
@@ -145,7 +154,7 @@ function router(bundle) {
                         res.cookie("auth-token", data.token, {
                             maxAge: 2400000
                         });
-                        pathgen(mongoose, patharr, hbs, res);
+                        pathgen(mongoose, patharr, hbs, res,user.id,name);
                     }).catch((err) => {
                         res.status(404).send("Something went wrong");
                     });

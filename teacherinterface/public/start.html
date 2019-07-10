@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css"">
+    <link rel=" stylesheet" href="./bootstrap/animate.css">
+    <link rel=" stylesheet" href="index.css">
+    <link rel="stylesheet" href="./bootstrap/global.css">
+
+
+
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto" rel="stylesheet">
+    <script src="main.js"></script>
+</head>
+
+<body>
+
+    <div class="card" style="text-align:center; background: #f0f1f3;margin-top:100px;display:flex;">
+        <h1>Select the Exam Details</h1>
+    </div>
+    <div id="pref" class="card animated flipInX" style="background:#f0f1f3; padding:50px;">
+        <div class="row">
+            <div style="width:100%;padding-top: 10px;">
+                <label class="col-md-5" for="dept"><strong>
+                        <h6>Department:</h6>
+                    </strong> </label>
+                <select class="col-md-5" id="dept">
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="CSE">IT</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CHEM">CHEM</option>
+                    <option value="BIOMED">BIOMED</option>
+                </select>
+            </div>
+            <div style="width:100%; padding-top: 10px; ">
+                <label class="col-md-5" for="sec"><strong>
+                        <h6>Section:</h6>
+                    </strong></label>
+                <select class="col-md-5" id="sec">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                </select>
+            </div>
+            <div style="display:flex; width:100%;padding-top: 10px;">
+                <label class="col-md-5" for="Batch"><strong>
+                        <h6>Batch:</h6>
+                    </strong> </label>
+                <input class="col-md-5" class="col-md-5" style="width: 25%" id="batch" class="form-control" type="number"
+                    min="2014" max="9999" step="1" value="2017" />
+            </div>
+        </div>
+        <button id="starttest" type="button" class="btn btn-success col-md-12" style="margin-top:40px;">Start Test!</button>
+    </div>
+
+
+    <div class="card animated flipInX" style="background:#f0f1f3;">
+        <div style="display:flex;">
+                <p style="width:30%;text-align:center;">Add time:</p>
+                <input id="time" style="width:50%;text-align:center;" type="number" value=0>
+                <p style="width:10%;text-align:center;">min</p>
+                <button style="width:10%;" id="set" type="button" class="btn btn-info">Set</button>
+
+        </div>
+        
+    </div>
+
+    <ol class="logindetails card card animated flipInX"><p>Student Details:</p></ol>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./start.js"></script>
+</body>
+
+</html>

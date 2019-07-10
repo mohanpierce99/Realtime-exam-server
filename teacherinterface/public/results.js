@@ -1,4 +1,17 @@
 (function(){
+    var nitin ="hmm";
+    var resultant = [];
+    //{name: , roll: , date: } -- details
+    var addstudcard = function(details){
+        
+        var pcards = document.querySelectorAll(".card");
+        var maincard = pcards[pcards.length-1];
+        var innerhtml = maincard.innerHTML;
+        console.log(innerhtml);
+        maincard.innerHTML = innerhtml + `<h1>${details}</h1>`;
+    }
+    
+
 
     var obj = {};
    

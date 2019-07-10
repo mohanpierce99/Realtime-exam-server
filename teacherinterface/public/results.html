@@ -11,7 +11,15 @@
     <link rel=" stylesheet" href="./bootstrap/animate.css">
     <link rel=" stylesheet" href="index.css">
     <link rel="stylesheet" href="./bootstrap/global.css">
-
+    <style>
+        .columnstuff{
+            padding:3%;
+            display: flex;
+        }
+    .columnstuff > p{
+     width: 20%;
+    }
+    </style>
     <title>Results</title>
 </head>
 
@@ -36,11 +44,29 @@
                             <div style="display:flex" class="row">
                                 <div class="col-md-6">
                                     <label for="dept">Department</label>
-                                    <input class="form-control" type="text" name="dept" id="dept">
+
+                                    <select>
+                                        <option value="CSE">CSE</option>
+                                        <option value="ECE">ECE</option>
+                                        <option value="EEE">EEE</option>
+                                        <option value="CSE">IT</option>
+                                        <option value="MECH">MECH</option>
+                                        <option value="CHEM">CHEM</option>
+                                        <option value="BIOMED">BIOMED</option>
+                                    </select> 
                                 </div>
                                 <div class="col-md-6">
                                     <label for="sec">Section</label>
-                                    <input class="form-control" type="text" name="section" id="sec">
+                                    <select>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                        </select> 
+
                                 </div>
                                 <div class="col-md-6">
                                     <label for="Batch">Batch</label>
@@ -54,20 +80,32 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
+          <div class="columnstuff">
+              <p style="width:35%;background: red">Name</p>
+              <p style="width: 20%;background: yellow">Roll no</p>
+              <p style="border: 2px solid black">Logged in</p>
+              <p style="border: 2px solid black">Status</p>
+              <p style="border: 2px solid black">Manipulate time</p>
+          </div>
+            <div class="card loggedin">
+                
+                    <div class="columnstuff">
+                            <p style="width:35%;background: red">Name</p>
+                            <p style="width: 20%;background: yellow">Roll no</p>
+                            <p style="border: 2px solid black">Currently online</p>
+                            <p style="border: 2px solid black">Status</p>
+                            <p style="border: 2px solid black">Manipulate time</p>
+                        </div>            
+            </div>
         </div>
-
-
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
-
         <script src="./results.js"></script>
 </body>
-
 </html>
