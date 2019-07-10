@@ -11,6 +11,8 @@
         maincard.innerHTML = innerhtml + `<h1>${details}</h1>`;
     }
     
+
+
     var obj = {};
    
     document.addEventListener("change",(data)=>{

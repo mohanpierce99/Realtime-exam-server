@@ -1,3 +1,4 @@
+
 {
   "name": "project",
   "version": "1.0.0",
@@ -9,6 +10,7 @@
   "author": "nimish",
   "license": "ISC",
   "dependencies": {
+    "all": "0.0.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
