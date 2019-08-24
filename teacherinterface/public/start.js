@@ -1,4 +1,17 @@
+
 (function () {
+    
+    document.querySelector("#downloadresult").addEventListener("click",()=>{
+        fetch('http://localhost:3000/downloadresults')
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(myJson) {
+            console.log(JSON.stringify(myJson));
+        });
+        
+    })
+
 var socket=io();
     var batch = document.querySelector("#batch");
     var year = new Date().getFullYear();
@@ -99,5 +112,6 @@ socket.emit("sendTime",Number(sel("#time").value)*60);
         return document.querySelector(data);
     }
 
+    
 
 })();

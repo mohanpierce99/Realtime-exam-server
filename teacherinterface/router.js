@@ -1,4 +1,7 @@
 function router(bundle) {
+    var jsonToCsv = require('json-to-csv-stream')
+    var fs = require('fs')
+
     let app = bundle.app;
     let cookieparse = bundle.cookie;
     let {
@@ -31,6 +34,51 @@ function router(bundle) {
     }));
     /*-----------------------------------------------------------*/
 
+    app.get('/downloadresults',(req,res)=>{
+        // console.log("nitin")
+        // fs.createReadStream("./json.txt")
+        // .pipe(jsonToCsv())
+        // .pipe(fs.createWriteStream('./data.csv'))
+
+        //get the data from db and clean!!!
+        function ConvertToCSV(objArray) {
+            var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+            var str = '';
+
+            for (var i = 0; i < array.length; i++) {
+                var line = '';
+                for (var index in array[i]) {
+                    if (line != '') line += ','
+
+                    line += array[i][index];
+                }
+
+                str += line + '\r\n';
+            }
+
+            return str;
+        }
+
+        var items = [
+            { name: "Item 1", color: "Green", size: "X-Large" },
+            { name: "Item 2", color: "Green", size: "X-Large" },
+            { name: "Item 3", color: "Green", size: "X-Large" }];
+
+            var jsonObject = JSON.stringify(items);
+
+
+            fs.writeFile("./data.csv", ConvertToCSV(jsonObject), function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+            
+                console.log("The file was saved!");
+                res.send("results generated")
+            }); 
+
+        
+
+    })
 
 //    app.get('/',(req,res)=>{
 //        res.render('TeacherLogin.html');
