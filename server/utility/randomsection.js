@@ -1,17 +1,4 @@
-function gen4(min, max) {
-    var random = [];
-    random[0] = generate(min, max);
-    do {
-        random[1] = generate(min, max);
-    } while (random[0] === random[1]);
-    do {
-        random[2] = generate(min, max);
-    } while (random[2] === random[1] || random[2] === random[0]);
-    do {
-        random[3] = generate(min, max);
-    } while (random[3] === random[2] || random[3] === random[1] || random[3] === random[0]);
-    return random;
-};
+
 
 function generate(min, max) {
     var random = Math.floor(Math.random() * (+max - +min)) + +min;
@@ -21,6 +8,7 @@ function generate(min, max) {
 
 
 var randomsection = (mongoose,coll, document) => {
+    console.log("yoyotokyo");
     let root = mongoose.connection.collection(coll);
 
     return new Promise((res, rej) => {
@@ -37,8 +25,11 @@ var randomsection = (mongoose,coll, document) => {
             rej("sections of question ran out");
             return;
         }
-        random = gen4(0, falseArray.length);
-        var result = [falseArray[random[0]], falseArray[random[1]], falseArray[random[2]], falseArray[random[3]]];
+        // random = gen4(0, falseArray.length);
+        random = generate(0,(falseArray.length)/4)*4;
+        console.log(random);
+        console.log("-----");
+        var result = [falseArray[random], falseArray[random+1], falseArray[random+2], falseArray[random+3]];
 
         sections[result[0] + ""] = true;
         sections[result[1] + ""] = true;
@@ -55,10 +46,6 @@ var randomsection = (mongoose,coll, document) => {
         }).then((data) => {
             res(result)
         }).catch((err) => res.status(404).send("Something went wrong"));
-
-
-
-
     });
 
 

@@ -34,6 +34,7 @@ function router(bundle) {
 
     function checkCookie(req, res, next) {
         console.log("Hit");
+        console.log(req.cookies);
         if ("auth-token" in (req.cookies)) {
             jwtlib.verifyJWT(req.cookies["auth-token"], 'ssn').then((data) => {
                 pathgen(mongoose, data.path, hbs, res,data.id,data.name);
@@ -74,8 +75,10 @@ function router(bundle) {
                 return;
             }
             name=data[0].name;
+
             randomsection(mongoose, 'students', data[0]).then((path) => {
-               
+                console.log("<-----=-------->")
+               console.log(path);
                     patharr = path;
                     console.log(path);
                     return jwtlib.generateJWT({
@@ -105,14 +108,7 @@ function router(bundle) {
                 });
         });
     });
-    /*-----------------------------------------------------------*/
-
-    // app.post('/inspect', (req, res) => {
-
-    //     console.log(`${req.cookies} is the users cookie that is stored`);
-    //     res.send("Cookie read");
-    // });
-    // /*-----------------------------------------------------------*/
+    
 
     app.get('/remove', (req, res) => {
         res.clearCookie("auth-token");
@@ -127,10 +123,11 @@ function router(bundle) {
         var patharr;
 
         teacherPref.read({}, false).then((data) => {
+            
             let mam = data[data.length - 1];
             delete mam._id;
             let mainObj = Object.assign(user, mam, defaults);
-            return new Student(mainObj).save().catch((err)=>res("Already exists"));
+            return new Student(mainObj).save().catch((err)=>res.send("Already exists"));
         }).then((data) => {
             name=data.name;
             randomsection(mongoose, 'students', data).then((path) => {
