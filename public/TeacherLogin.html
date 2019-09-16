@@ -28,10 +28,10 @@
 									<h1 class="text-center white bgblue">Admin Login</h1>
 								</div>
 							</div>
-							<form id="Login" class="card remove-shadow animated">
+							<form id="Login" class="card remove-shadow animated" method="POST" action="/teacherInterface">
 								<div class="form-group text-center">
 									<label for="password" class="font-medium">Please enter your Password</label>
-									<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+									<input type="password" name="pwd" class="form-control" id="inputPassword" placeholder="Password">
 								</div>
 								<button type="submit" class="btn btn-success font-medium extend">Login</button>
 								<div class="forgot text-center">

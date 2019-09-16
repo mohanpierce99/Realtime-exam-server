@@ -1,5 +1,6 @@
 function router(bundle) {
     let app = bundle.app;
+    let fs=require("fs");
     let cookieparse = bundle.cookie;
     let {
         mongoose
@@ -30,6 +31,16 @@ function router(bundle) {
     }));
 
     app.use('/teachers',express.static(__dirname+"./../teacherinterface/public/"));
+
+
+    app.post("/teacherInterface",(req,res)=>{
+        console.log(req.body);
+      if(+req.body.pwd===12345){
+          fs.createReadStream("./../public/testing.html").pipe(res);
+      }else{
+          res.send("Invalid password ! Please try again");
+      }
+    });
     /*-----------------------------------------------------------*/
 
     function checkCookie(req, res, next) {
@@ -67,6 +78,8 @@ function router(bundle) {
         studColl.read({
             id: rollno
         }).then((data) => {
+            let logincount=data[0].login_count;
+            console.log("user logging in for "+logincount+" time ");
             if (!data.length) {
                 res.status(401).send("Please Signup or enter Correct Register No");
                 return;
@@ -74,6 +87,11 @@ function router(bundle) {
                 res.status(401).send("User already in session");
                 return;
             }
+            else if(logincount==8){
+                res.status(401).send("You have attended all the tests");
+                return;
+            }
+            studColl.
             name=data[0].name;
 
             randomsection(mongoose, 'students', data[0]).then((path) => {
@@ -94,8 +112,9 @@ function router(bundle) {
                     return studColl.update({
                         id: rollno
                     }, {
-                        // is_loggedin: true,
-                        token
+                        is_loggedin: true,
+                        token,
+                        login_count:logincount+1
                     })
                 }).then((data) => {
 
@@ -189,6 +208,88 @@ function router(bundle) {
 
         });
     });
+
+    app.post("/teacherpref",(req,res)=>{
+        teacherPref.update({
+            "access": "12345"
+        }, {
+           batch:req.body.batch,
+           department:req.body.department,
+           class:req.body.class
+        }).then(()=>{
+           res("Session created");
+        }).catch(()=>{
+            res("Session failed ! Please try again");
+
+        });
+    });
+
+
+    app.post('/downloadresults',(req,res)=>{
+console.log("Server hit");
+        function ConvertToCSV(objArray) {
+            var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+            var str = '';
+
+            for (var i = 0; i < array.length; i++) {
+                var line = '';
+                for (var index in array[i]) {
+                    if (line != '') line += ','
+
+                    line += array[i][index];
+                }
+
+                str += line + '\r\n';
+            }
+
+            return str;
+        }
+
+        teacherPref.read({}, false).then((data) => {
+            
+            let mam = data[data.length - 1];
+            console.log(mam.batch);
+            console.log(mam.department);
+            console.log(mam.class);
+             return studColl.read({
+                batch:mam.batch,
+                department:mam.department,
+                class:mam.class
+            })
+
+        }).then((data)=>{
+            data=data.map((x)=>{
+                x.marks=x.marks.join(",") || "No tests attended yet";
+
+                return {"name":x.name,"id":x.id,"batch":x.batch,"department":x.department,"class":x.class,"logincount":x.login_count,"marks":x.marks};
+            })
+
+            var jsonObject = JSON.stringify(data);
+ 
+
+            fs.writeFile("./data.csv", ConvertToCSV(jsonObject), function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+            
+                console.log("The file was saved!");
+                res.download("./data.csv")
+            }); 
+
+        })
+
+
+       
+
+            
+
+        
+
+    });
+
+
+
+
 }
 
 

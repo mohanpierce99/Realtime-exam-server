@@ -4,7 +4,7 @@
     var loginportion = sel("#loginportion");
     var signupportion = sel("#signupportion");
     
-
+    
 
     login.addEventListener("click", () => {
         signupportion.classList.add("d-none","fadeOut");

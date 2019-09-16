@@ -1,17 +1,7 @@
 
 (function () {
     
-    document.querySelector("#downloadresult").addEventListener("click",()=>{
-        fetch('http://localhost:3000/downloadresults')
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(myJson) {
-            console.log(JSON.stringify(myJson));
-        });
-        
-    })
-
+  sel("")
 var socket=io();
     var batch = document.querySelector("#batch");
     var year = new Date().getFullYear();
@@ -106,7 +96,28 @@ socket.emit("sendTime",Number(sel("#time").value)*60);
     });
 
    
+    function httpreq(route,json){
+        var http = new Promise((res,rej)=>{
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('POST',route,true);
+            xhttp.setRequestHeader('Cookie',document.cookie);
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                      res(this.response);
+                }
+                else if(this.readyState===4 && this.status===404){
+                    rej("error:file not found");
+                }else if(this.readyState===4 && this.status===401){
+                    rej(this.response);
+                }
+            };
+                
+            xhttp.setRequestHeader('Content-Type','application/json; charset=UTF-8');
+            xhttp.send(json);
+        });
 
+        return http;
+    }
 
     function sel(data) {
         return document.querySelector(data);

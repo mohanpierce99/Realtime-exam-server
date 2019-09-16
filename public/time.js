@@ -35,7 +35,7 @@ var div=document.querySelector(".modal-body")
 });
     var start = function (timeleft) {
         var func = (addTime) => {
-            timeleft = timeleft +addTime;
+            timeleft =addTime;
         };
         var counter = 0;
         var div = document.querySelector('#div')
@@ -72,8 +72,9 @@ var div=document.querySelector(".modal-body")
         var dataElement = sel('.container')
         var dataUser = dataElement.getAttribute('data-user');
         var dataName = dataElement.getAttribute('data-name');
-        //console.log(dataUser);
-        //console.log(socket);
+        console.log("vareva");
+        console.log(dataUser);
+        console.log(socket);
         socket.emit('getCredentials',dataUser,dataName);
 
     
@@ -89,12 +90,7 @@ var div=document.querySelector(".modal-body")
             st(eTime);
         });
     
-        socket.on('disconnect',function() {
-            console.log('disconnected');
-
-            socket.emit('makeOffline',dataUser);
-
-        }); 
+     
     });
     
     // sel("#ro").addEventListener("click",function(){

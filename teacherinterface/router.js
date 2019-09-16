@@ -35,12 +35,7 @@ function router(bundle) {
     /*-----------------------------------------------------------*/
 
     app.get('/downloadresults',(req,res)=>{
-        // console.log("nitin")
-        // fs.createReadStream("./json.txt")
-        // .pipe(jsonToCsv())
-        // .pipe(fs.createWriteStream('./data.csv'))
 
-        //get the data from db and clean!!!
         function ConvertToCSV(objArray) {
             var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
             var str = '';
@@ -73,7 +68,7 @@ function router(bundle) {
                 }
             
                 console.log("The file was saved!");
-                res.send("results generated")
+                res.download("./data.csv")
             }); 
 
         
